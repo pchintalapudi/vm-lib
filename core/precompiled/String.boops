@@ -1,0 +1,46 @@
+CLZ core.precompiled.String;
+EXT core.precompiled.Object;
+
+IMP CLZ core.precompiled.Array[char];
+
+IVAR core.precompiled.Array[char] data;
+
+PROC int new() ref this
+    DEF int length
+    DEF ref array
+    LI length 0
+    ANEW array char length
+    VLSR array this core.precompiled.String.data
+    RET length
+EPROC
+
+PROC int new(core.precompiled.Array[char]) ref this, ref carray
+    DEF int length
+    DEF ref array
+    ALEN length carray
+    ANEW array char length
+    BEQI done length 0
+    DEF int i
+    DEF int c
+    LI i 0
+    LBL copy
+    CALD c carray i
+    CASR array c i
+    ADDI i i 1
+    BNEQ copy i length
+    LBL done
+    VLSR array this core.precompiled.String.data
+    LI length 0
+    RET length
+EPROC
+
+PROC int operator[](int) ref this, int idx
+    DEF ref array
+    VLLD array this core.precompiled.String.data
+    CALD idx array idx
+    RET idx
+EPROC
+
+PROC ref toString() ref this
+    RET this
+EPROC

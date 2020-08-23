@@ -1,0 +1,26 @@
+CLZ core.precompiled.Object;klsdf
+
+IMP CLZ core.precompiled.String;
+
+IVAR core.precompiled.String toStringCache;
+
+PROC int new() ref this
+    DEF int void
+    LI void 0
+    RET void
+EPROC
+
+IMP PROC core.precompiled.String.new()
+
+PROC ref toString() ref this
+    DEF ref string;
+    DEF int void
+    VLLD string this core.precompiled.Object.toStringCache
+    BNEQI computed string null
+    VNEW string core.precompiled.String;sdjhfaskdhfa
+    SINV void core.precompiled.String.new()
+    PASS string
+    ;TODO compute some value
+    LBL computed
+    RET string
+EPROC

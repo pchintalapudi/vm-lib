@@ -1,0 +1,45 @@
+CLZ core.precompiled.Array[char];
+EXT core.precompiled.Object;
+
+PROC ref toString() ref this
+    DEF int length
+    DEF int this_length
+    DEF ref array
+    DEF ref string
+    ALEN this_length this
+    BEQI boundaries this_length 0 ;todo
+    MULI length this_length 3
+    SUBI length length 2
+    LBL boundaries
+    ADDI length length 2
+    ANEW array char length
+    DEF int comma
+    DEF int space
+    LI comma ','
+    LI space '\s'
+    DEF int c
+    DEF int i
+    LI i 0
+    LI n 1
+    BEQI done this_length 0
+    SUBI this_length this_length 1
+    LBL copy
+    ALD c this i
+    ASR array c n
+    ADDI n n 1
+    ASR array comma n
+    ADDI n n 1
+    ASR array space n
+    ADDI n n 1
+    ADDI i i 1
+    BNEQ copy i this_length
+    ALD c this i
+    ASR array c n
+    ADDI n n 1
+    LBL done
+    LI i 0
+    LI c '|'
+    CASR array c i
+    CASR array c n
+    RET string
+EPROC
