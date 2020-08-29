@@ -1,8 +1,8 @@
-CLZ core.precompiled.Object;klsdf
+CLZ oops.core.precompiled.Object;klsdf
 
-IMP CLZ core.precompiled.String;
+IMP CLZ oops.core.precompiled.String;
 
-IVAR core.precompiled.String toStringCache;
+IVAR oops.core.precompiled.String toStringCache;
 
 PROC int new() ref this
     DEF int void
@@ -10,16 +10,15 @@ PROC int new() ref this
     RET void
 EPROC
 
-IMP PROC core.precompiled.String.new()
+IMP PROC oops.core.precompiled.String.new()
 
 PROC ref toString() ref this
     DEF ref string;
     DEF int void
-    VLLD string this core.precompiled.Object.toStringCache
+    VLLD string this oops.core.precompiled.Object.toStringCache
     BNEQI computed string null
-    VNEW string core.precompiled.String;sdjhfaskdhfa
-    SINV void core.precompiled.String.new()
-    PASS string
+    VNEW string oops.core.precompiled.String;sdjhfaskdhfa
+    SINV void oops.core.precompiled.String.new() string
     ;TODO compute some value
     LBL computed
     RET string

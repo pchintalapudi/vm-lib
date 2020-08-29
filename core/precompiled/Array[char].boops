@@ -1,5 +1,7 @@
-CLZ core.precompiled.Array[char];
-EXT core.precompiled.Object;
+CLZ oops.core.precompiled.Array[char];
+EXT oops.core.precompiled.Object;
+
+IMP PROC oops.core.precompiled.String.new(oops.core.precompiled.Array[char])
 
 PROC ref toString() ref this
     DEF int length
