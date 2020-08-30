@@ -1,47 +1,55 @@
 CLZ oops.core.precompiled.Array[char];
 EXT oops.core.precompiled.Object;
 
+IMP CLZ oops.core.precompiled.String;
+
 IMP PROC oops.core.precompiled.String.new(oops.core.precompiled.Array[char])
 
 PROC ref toString() ref this
-    DEF int length
-    DEF int this_length
-    DEF ref array
-    DEF ref string
-    ALEN this_length this
-    BEQI boundaries this_length 0 ;todo
-    MULI length this_length 3
-    SUBI length length 2
-    LBL boundaries
-    ADDI length length 2
-    ANEW array char length
-    DEF int comma
-    DEF int space
+    DEF ref string; the string to be built
+    DEF ref builder; the character array to build into
+    DEF int void; dumb return value
+    DEF int builder_size; size (later size - 1) of new output array
+    DEF int chr; character loaded from this array
+    DEF int idx; idx into builder array
+    ALEN builder_size this
+    BNEQI elements builder_size 0
+    LI builder_size 2
+    ANEW builder char builder_size
+    LI builder_size 1
+    BU done
+    LBL elements
+    MULI builder_size builder_size 3
+    ANEW builder char builder_size
+    SUBI builder_size builder_size 1
+    LI idx 1
+    DEF int self_idx; index into this array
+    LI self_idx 0
+    CALD chr this self_idx
+    CASR builder chr idx
+    ADDI idx idx 1
+    BEQ done idx builder_size
+    DEF int comma; a comma character
+    DEF int space; a space character
     LI comma ','
     LI space '\s'
-    DEF int c
-    DEF int i
-    LI i 0
-    LI n 1
-    BEQI done this_length 0
-    SUBI this_length this_length 1
-    LBL copy
-    ALD c this i
-    ASR array c n
-    ADDI n n 1
-    ASR array comma n
-    ADDI n n 1
-    ASR array space n
-    ADDI n n 1
-    ADDI i i 1
-    BNEQ copy i this_length
-    ALD c this i
-    ASR array c n
-    ADDI n n 1
+    LBL nextchar
+    CASR builder comma idx
+    ADDI idx idx 1
+    CASR builder space idx
+    ADDI idx idx 1
+    CALD chr this self_idx
+    CASR builder chr idx
+    ADDI self_idx self_idx 1
+    ADDI idx idx 1
+    BNEQ nextchar idx builder_size
     LBL done
-    LI i 0
-    LI c '|'
-    CASR array c i
-    CASR array c n
+    LI chr '['
+    LI idx 0
+    CASR builder chr idx
+    LI chr ']'
+    CASR builder chr builder_size
+    VNEW string oops.core.precompiled.String;
+    SINV void oops.core.precompiled.String.new(oops.core.precompiled.Array([char]) builder;
     RET string
 EPROC
