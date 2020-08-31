@@ -1,0 +1,49 @@
+CLZ oops.core.precompiled.Integer;
+EXT oops.core.precompiled.Object;
+
+IMP CLZ oops.core.precompiled.Long;
+IMP PROC oops.core.precompiled.Long.toString(long);
+
+PROC static ref toString(int) int integer
+    DEF ref string
+    DEF long big
+    CST big integer
+    SINV string oops.core.precompiled.Long.toString(long) big;
+    RET string
+EPROC
+
+PROC static ref countTrailingZeros(int) int integer
+    DEF ref count
+    DEF ref shifted
+    BEQI zero integer 0
+    LI count 31
+    SLLI shifted integer 16
+    BEQI eight shifted 0
+    SUBI count count 16
+    ORI integer shifted 0
+    LBL eight
+    SLLI shifted integer 8
+    BEQI four shifted 0
+    SUBI count count 8
+    ORI integer shifted 0
+    LBL four
+    SLLI shifted integer 4
+    BEQI two shifted 0
+    SUBI count count 4
+    ORI integer shifted 0
+    LBL two
+    SLLI shifted integer 2
+    BEQI one shifted 0
+    SUBI count count 2
+    ORI integer shifted 0
+    LBL one
+    SLLI shifted integer 1
+    BEQI end shifted 0
+    SUBI count count 1
+    ORI integer shifted 0
+    LBL end
+    RET count
+    LBL zero
+    LI count 32
+    RET count
+EPROC

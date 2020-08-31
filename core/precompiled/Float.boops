@@ -1,0 +1,125 @@
+CLZ oops.core.precompiled.Float;
+EXT oops.core.precompiled.Object
+
+IMP CLZ oops.core.precompiled.String
+IMP PROC oops.core.precompiled.String.new(oops.core.precompiled.Array[char])
+
+PROC static ref toStringBinary(float) float number
+    DEF ref array
+    DEF int chr
+    LI chr 41
+    ANEW array char chr
+    DEF int idx
+    DEF int raw
+    RCVT raw number
+    DEF int nidx
+    LI chr 'f'
+    LI idx 0
+    CASR array chr idx
+    LI chr 'l'
+    LI idx 1
+    CASR array chr idx
+    LI chr 'o'
+    LI idx 2
+    CASR array chr idx
+    LI chr 'a'
+    LI idx 3
+    CASR array chr idx
+    LI chr 't'
+    LI idx 4
+    CASR array chr idx
+    LI chr '('
+    LI idx 5
+    CASR array chr idx
+    LI chr '0'
+    LI idx 6
+    CASR array chr idx
+    LI chr 'b'
+    LI idx 7
+    CASR array chr idx
+    LI chr ')'
+    LI nidx 40
+    CASR array chr idx
+    DEF int zero
+    LI zero '0'
+    LBL copy
+    SUBI nidx nidx 1
+    ANDI chr raw 1
+    ADD chr chr zero
+    CASR array chr nidx
+    SRLI raw raw 1
+    BNEQI copy nidx 8
+    DEF ref string
+    VNEW string oops.core.precompiled.String
+    SINV raw oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) string array
+    RET string
+EPROC
+
+PROC static ref toString(float) float number
+    DEF int raw
+    RCVT raw number
+    DEF int exponent
+    DEF int mantissa
+    DEF ref array
+    DEF ref string
+    SLLI mantissa raw 9
+    SRLI mantissa mantissa 9
+    SLLI exponent raw 1
+    SRLI exponent exponent 24
+    BNEQI num exponent 0xff
+    BEQI inf mantissa 0
+    LI raw 3
+    ANEW array char raw
+    LI raw 0
+    LI exponent 'N'
+    CASR array exponent raw
+    LI raw 2
+    CASR array exponent raw
+    LI exponent 'a'
+    LI raw 1
+    CASR array exponent raw
+    BU done
+    LBL inf
+    LI mantissa 3
+    SRLI raw raw 31
+    ADD mantissa mantissa raw
+    ANEW array char mantissa
+    LI exponent 0
+    BEQI pinf raw 0
+    LI raw '-'
+    CASR array raw exponent
+    LI exponent 1
+    LBL pinf
+    LI raw 'I'
+    CASR array raw exponent
+    ADDI exponent exponent 1
+    LI raw 'n'
+    CASR array raw exponent
+    ADDI exponent exponent 1
+    LI raw 'f'
+    CASR array raw exponent
+    BU done
+    LBL num
+    BEQI subnormal exponent 0
+    SINV string oops.core.precompiled.Float.toStringBinary(float) number
+    RET string
+    LBL subnormal
+    BEQI zero mantissa 0
+    SINV string oops.core.precompiled.Float.toStringBinary(float) number
+    RET string
+    LBL zero
+    LI raw 3
+    ANEW array char raw
+    LI raw 0
+    LI exponent '0'
+    CASR array exponent raw
+    LI raw 2
+    CASR array exponent raw
+    LI exponent '.'
+    LI raw 1
+    CASR array exponent raw
+    LBL done
+    VNEW string oops.core.precompiled.String
+    SINV raw oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) string array
+    RET string
+EPROC

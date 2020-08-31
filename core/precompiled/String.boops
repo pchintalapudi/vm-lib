@@ -44,3 +44,17 @@ EPROC
 PROC ref toString() ref this
     RET this
 EPROC
+
+PROC int size() ref this
+    DEF ref array
+    VLLD array this oops.core.precompiled.String.data
+    DEF int length
+    ALEN length array
+    RET length
+EPROC
+
+PROC int length() ref this
+    DEF int length
+    SINV length oops.core.precompiled.String.size() this
+    RET length
+EPROC

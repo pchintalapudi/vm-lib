@@ -50,6 +50,6 @@ PROC ref toString() ref this
     LI chr ']'
     CASR builder chr builder_size
     VNEW string oops.core.precompiled.String;
-    SINV void oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) builder;
+    SINV void oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) string builder;
     RET string
 EPROC

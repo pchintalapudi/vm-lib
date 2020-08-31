@@ -17,9 +17,10 @@ PROC ref toString() ref this
     DEF int void
     VLLD string this oops.core.precompiled.Object.toStringCache
     BNEQI computed string null
+    ;TODO compute some value
     VNEW string oops.core.precompiled.String;sdjhfaskdhfa
     SINV void oops.core.precompiled.String.new() string
-    ;TODO compute some value
+    VLSR this string oops.core.precompiled.Object.toStringCache;
     LBL computed
     RET string
 EPROC

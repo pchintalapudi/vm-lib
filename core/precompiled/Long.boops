@@ -1,0 +1,48 @@
+CLZ oops.core.precompiled.Long;
+EXT oops.core.precompiled.Object;
+
+IMP CLZ oops.core.precompiled.String;
+
+PROC static ref toString(long) long integer
+    DEF int strlen
+    DEF ref string;
+    DEF ref array;
+    DEF int zero
+    LI zero '0'
+    LI strlen 1
+    BNEQI calc integer 0
+    ANEW array char strlen
+    CASR array zero integer
+    BU done
+    LBL calc
+    BLTI alen integer 0
+    LI strlen 0
+    LBL alen
+    DEF long breakdown
+    ORI breakdown integer 0
+    LBL reduce
+    ADDI strlen strlen 1
+    DIVI breakdown breakdown 10
+    BNEQI reduce breakdown 0
+    ANEW array char strlen
+    DEF int idx
+    DEF int chr
+    LI idx 0
+    BGTI number integer 0
+    LI chr '-'
+    CASR array chr idx
+    ADDI idx idx 1
+    LBL number
+    SUBI idx strlen 1
+    LBL populate
+    MODI chr integer 10
+    ADD chr chr zero
+    CASR array chr idx
+    DIVI integer integer 10
+    SUBI idx idx 1
+    BNEQI populate integer 0
+    LBL done
+    VNEW string oops.core.precompiled.String
+    SINV zero oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) string array
+    RET string
+EPROC
