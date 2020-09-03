@@ -1,0 +1,52 @@
+CLZ oops.core.precompiled.Constants
+EXT oops.core.precompiled.Object
+
+IMP CLZ oops.core.precompiled.String
+IMP PROC oops.core.precompiled.String.new(oops.core.precompiled.Array[char])
+
+SVAR oops.core.precompiled.String scommaSeparated;
+SVAR oops.core.precompiled.String snan;
+
+PROC static ref getCommaSeparator()
+    DEF ref cs
+    STLD cs oops.core.precompiled.Constants.scommaSeparated
+    BNEQI done cs null
+    DEF ref array
+    DEF int len
+    LI len 2
+    ANEW array char 2
+    LI len 1
+    DEF int chr
+    LI chr '\s'
+    CASR array chr len
+    LI chr ','
+    CASR array chr len
+    VNEW cs oops.core.precompiled.String
+    SINV len oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) cs array
+    STSR cs oops.core.precompiled.Constants.scommaSeparated
+    LBL done
+    RET cs
+EPROC
+PROC static ref getNaN()
+    DEF ref cs
+    STLD cs oops.core.precompiled.Constants.scommaSeparated
+    BNEQI done cs null
+    DEF ref array
+    DEF int len
+    LI len 3
+    ANEW array char 2
+    LI len 2
+    DEF int chr
+    LI chr 'N'
+    CASR array chr len
+    LI len 0
+    CASR array chr len
+    LI chr 'a'
+    LI len 1
+    CASR array chr len
+    VNEW cs oops.core.precompiled.String
+    SINV len oops.core.precompiled.String.new(oops.core.precompiled.Array[char]) cs array
+    STSR cs oops.core.precompiled.Constants.scommaSeparated
+    LBL done
+    RET cs
+EPROC

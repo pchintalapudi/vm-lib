@@ -58,6 +58,9 @@ PROC static ref toStringBinary(double) double number
     RET string
 EPROC
 
+IMP CLZ oops.core.precompiled.Constants
+IMP PROC oops.core.precompiled.Constants.getNaN()
+
 PROC static ref toString(double) double number
     DEF long raw
     RCVT raw number
@@ -71,17 +74,8 @@ PROC static ref toString(double) double number
     SRLI exponent exponent 52
     BNEQI num exponent 0x7ff
     BEQI inf mantissa 0
-    LI raw 3
-    ANEW array char raw
-    LI raw 0
-    LI exponent 'N'
-    CASR array exponent raw
-    LI raw 2
-    CASR array exponent raw
-    LI exponent 'a'
-    LI raw 1
-    CASR array exponent raw
-    BU done
+    SINV string oops.core.precompiled.Constants.getNaN()
+    RET string
     LBL inf
     LI mantissa 3
     SRLI raw raw 63
