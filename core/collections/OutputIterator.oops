@@ -1,0 +1,4 @@
+interface OutputIterator<E> {
+
+    public set value(E val) -> E;
+}

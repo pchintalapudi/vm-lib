@@ -1,0 +1,27 @@
+import core.collections.BidirectionalIterator;
+import core.implicit.Comparable;
+
+interface RandomAccessIterator<E, Derived=RandomAccessIterator<E>> :: BidirectionalIterator<E, Derived>, Comparable<Derived> {
+    public def operator+=(long n) -> Derived;
+    public def operator+(long n) -> Derived;
+    public def operator-(Derived other) -> long;
+    public def operator-=(long n) -> Derived {
+        return this += -n;
+    }
+    public def operator-(long n) -> Derived {
+        return this + -n;
+    }
+
+    public def operator++() -> Derived {
+        return this += 1;
+    }
+    public def operator++(long _) -> Derived {
+        return this + 1;
+    }
+    public def operator--() -> Derived {
+        return this -= 1;
+    }
+    public def operator--(long _) -> Derived {
+        return this - 1;
+    }
+}

@@ -1,0 +1,7 @@
+import core.collections.Iterator;
+
+interface BidirectionalIterator<E, Derived=BidirectionalIterator<E>> :: Iterator<E, Derived> {
+
+    public def operator--() -> Derived;
+    public def operator--(long _) -> Derived;
+}

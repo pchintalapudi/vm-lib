@@ -1,0 +1,10 @@
+import core.implicit.Identifiable;
+
+interface Iterator<E, Derived=Iterator<E>> :: Identifiable {
+
+    public get value() -> E;
+
+    public def operator++() -> Derived;
+
+    public def operator++(long _) -> Derived;
+}

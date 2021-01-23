@@ -2,8 +2,10 @@ import core.implicit.Object;
 import core.implicit.Array;
 import core.implicit.Hashable;
 import core.implicit.Range;
+import core.collections.Collection;
+import core.collections.RandomAccessIterator;
 
-class String : Object :: Hashable {
+class String : Object :: Hashable, Collection<byte> {
     private byte[] backing;
     private int hashcode;
     private boolean hashcode_valid;
@@ -54,7 +56,6 @@ class String : Object :: Hashable {
         return this;
     }
 
-    public def operator+(String other) -> String {
-
-    }
+    public def begin() -> RandomAccessIterator<E>;
+    public def end() -> RandomAccessIterator<E>;
 };

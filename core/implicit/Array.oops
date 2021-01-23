@@ -1,8 +1,10 @@
 import core.implicit.Object;
 import core.implicit.String;
 import core.implicit.Range;
+import core.collections.Collection;
+import core.collections.RandomAccessIterator;
 
-class Array<E> {
+class Array<E> :: Collection<E> {
     public def intrinsic Array(int size);
     public def intrinsic operator[](int index) -> E;
     public def intrinsic operator[](int index, E element) -> void;
@@ -40,4 +42,7 @@ class Array<E> {
         }
         return copied;
     }
+
+    public def begin() -> RandomAccessIterator<E>;
+    public def end() -> RandomAccessIterator<E>;
 }
