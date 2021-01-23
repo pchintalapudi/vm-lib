@@ -1,0 +1,6 @@
+import core.implicit.String;
+
+class Object {
+    public def native toString() -> String;
+    public def intrinsic operator==(Object other) -> boolean;
+}

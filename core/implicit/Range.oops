@@ -1,0 +1,31 @@
+import core.implicit.Object;
+
+class Range : Object {
+    private final int start;
+    private final int end;
+    private final int step;
+
+    public def Range(int end) {
+        this.start = 0;
+        this.end = end;
+        this.step = 1;
+    }
+
+    public def Range(int start, int end, int step = 1) {
+        this.start = start;
+        this.end = end;
+        this.step = step;
+    }
+
+    public def operator[](int index) -> int {
+        int shift = step * index;
+        if (end >= start && end - start <= shift || end < start && end - start >= shift) {
+            throw new IndexException("Index out of bounds for Range object!!!");
+        }
+        return start + shift;
+    }
+
+    public def size() -> int {
+        return (end - start) / step;
+    }
+}

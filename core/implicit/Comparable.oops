@@ -1,0 +1,28 @@
+interface Comparable<E> {
+
+    public def cmp(Comparable<? sub E> against) -> int;
+
+    public def operator<(Comparable<? sub E> against) -> boolean {
+        return cmp(against) < 0;
+    }
+
+    public def operator<=(Comparable<? sub E> against) -> boolean {
+        return cmp(against) <= 0;
+    }
+
+    public def operator==(Comparable<? sub E> against) -> boolean {
+        return cmp(against) == 0;
+    }
+
+    public def operator!=(Comparable<? sub E> against) -> boolean {
+        return cmp(against) != 0;
+    }
+
+    public def operator>(Comparable<? sub E> against) -> boolean {
+        return cmp(against) > 0;
+    }
+
+    public def operator>=(Comparable<? sub E> against) -> boolean {
+        return cmp(against) > 0;
+    }
+}

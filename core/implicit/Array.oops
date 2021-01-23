@@ -1,0 +1,43 @@
+import core.implicit.Object;
+import core.implicit.String;
+import core.implicit.Range;
+
+class Array<E> {
+    public def intrinsic Array(int size);
+    public def intrinsic operator[](int index) -> E;
+    public def intrinsic operator[](int index, E element) -> void;
+    public def intrinsic size() -> int;
+    public def native toString() -> String;
+    private def checkBounds(Range rng) -> boolean;
+    public def copy() -> Array<E> {
+        E[] copied = new E[this.size];
+        for (int i = 0; i < this.size(); i++) {
+            copied[i] = this[i];
+        }
+        return copied;
+    }
+    public def copyTo(Array<? super E> destination) -> void {
+        this.copyTo(destination, new Range(this.size()), new Range(this.size()))
+    }
+    public def copyTo(Array<? super E> destination, Range sourceIndeces, Range destIndeces) -> void {
+        if (sourceIndeces.size() != destIndeces.size()) {
+            throw new IndexException("Source and destination indices mismatch!");
+        }
+        if (!this.checkBounds(sourceIndeces)) {
+            throw new IndexException("Source array out of bounds for given range!");
+        }
+        if (!destination.checkBounds(destIndeces)) {
+            throw new IndexException("Destination array out of bounds for given range!");
+        }
+        for (int i = 0; i < sourceIndeces.size(); i++) {
+            destination[destIndeces[i]] = this[sourceIndeces[i]];
+        }
+    }
+    public def operator[](Range range) -> Array<E> {
+        E[] copied = new E[range.size()];
+        for (int i = 0; i < copied.size(); i++) {
+            copied[i] = this[range[i]];
+        }
+        return copied;
+    }
+}

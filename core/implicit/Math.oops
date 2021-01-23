@@ -1,0 +1,34 @@
+import core.implicit.Number;
+
+final class Math {
+
+    //No instantiation!!!
+    private def Math() {}
+
+    public static final double E = 2.718281828459045e0;
+    public static final double PI = 3.141592653589793;
+
+    public static def abs(double num) -> double {
+        return Number.bitsToDouble(Number.doubleToBits(num) & 0x8FFFFFFFFFFFFFFF);
+    }
+
+    public static def abs(float num) -> float {
+        return Number.bitsToFloat(Number.floatToBits(num) & 0x8FFFFFFF);
+    }
+
+    public static def abs(int num) -> int {
+        return num & 0x8FFFFFFF;
+    }
+
+    public static def abs(long num) -> long {
+        return num & 0x8FFFFFFF;
+    }
+
+    public static def max<E>(E e1, E e2) -> E {
+        return e1 > e2 ? e1 : e2;
+    }
+
+    public static def min<E>(E e1, E e2) -> E {
+        return e1 > e2 ? e2 : e1;
+    }
+}

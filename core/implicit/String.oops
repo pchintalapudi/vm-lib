@@ -1,0 +1,60 @@
+import core.implicit.Object;
+import core.implicit.Array;
+import core.implicit.Hashable;
+import core.implicit.Range;
+
+class String : Object :: Hashable {
+    private byte[] backing;
+    private int hashcode;
+    private boolean hashcode_valid;
+
+    public def String() {
+        this.backing = new byte[0];
+        this.hashcode = 0;
+        this.hashcode_valid = true;
+    }
+
+    public def String(byte[] source, Range range) {
+        this.backing = new byte[range.size];
+        this.hashcode = 0;
+        this.hashcode_valid = false;
+    }
+
+    public def String(String other) {
+        this.backing = other.backing
+    }
+
+    private def computeHash() -> int;
+
+    public def hash() -> int {
+        return this.hashcode_valid ? hashcode : hashcode = computeHash();
+    }
+
+    public def getCharArray() -> byte[] {
+        return backing.copy();
+    }
+
+    public def operator[](int index) -> byte {
+        return backing[index];
+    }
+
+    public def operator[](Range range) -> String {
+        return new String(this.backing, range);
+    }
+
+    public def operator[](int index, byte c) -> void {
+        backing[index] = c;
+    }
+
+    public def size() -> int {
+        return this.backing.size();
+    }
+
+    public def toString() -> String {
+        return this;
+    }
+
+    public def operator+(String other) -> String {
+
+    }
+};

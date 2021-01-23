@@ -1,0 +1,8 @@
+final class Number {
+    private def Number() {}
+
+    public def intrinsic doubleToBits(double d) -> long;
+    public def intrinsic floatToBits(float f) -> int;
+    public def intrinsic bitsToFloat(int i) -> float;
+    public def intrinsic bitsToDouble(long l) -> double;
+}
