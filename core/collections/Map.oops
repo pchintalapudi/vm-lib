@@ -1,0 +1,17 @@
+import core.collections.Collection;
+
+interface Map<K,V> :: Collection<K> {
+    public def clear() -> Map<K,V>;
+    public def operator[](K key) -> V;
+    public def operator[](K key, V value) -> V;
+    public def contains(K key) -> boolean;
+
+    interface Pair {
+        public get key() -> K;
+        public get value() -> V;
+    }
+
+    interface ModifiablePair :: Pair {
+        public set value(V val) -> V;
+    }
+}

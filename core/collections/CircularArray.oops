@@ -3,7 +3,7 @@ import core.collections.Queue;
 import core.collections.Stack;
 import core.implicit.Bits;
 
-class DynamicArray<E> :: List<E>, Queue<E>, Stack<E> {
+class DynamicArray<E> :: List<E>, Queue<E> {
     private E[] backing;
     private int head;
     private int length;

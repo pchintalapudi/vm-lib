@@ -1,7 +1,8 @@
 import core.collections.Collection;
 
 interface Stack<E> :: Collection<E> {
-    public def pushBack(E element) -> List<E>;
+    public def pushBack(E element) -> Stack<E>;
     public def popBack() -> E;
     public def back() -> E;
+    public def clear() -> Stack<E>;
 }

@@ -2,10 +2,10 @@ import core.implicit.Object;
 import core.implicit.Array;
 import core.implicit.Hashable;
 import core.implicit.Range;
-import core.collections.Collection;
+import core.collections.ArrayLike;
 import core.collections.RandomAccessIterator;
 
-class String : Object :: Hashable, Collection<byte> {
+class String : Object :: Hashable, ArrayLike<byte> {
     private byte[] backing;
     private int hashcode;
     private boolean hashcode_valid;

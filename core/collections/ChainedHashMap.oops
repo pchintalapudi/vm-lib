@@ -1,0 +1,95 @@
+import core.collections.Map;
+import core.implicit.Hashable;
+import core.implicit.CircularArray;
+
+class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
+    class HashMapEntry :: Map<K, V>.Pair {
+        private final K k;
+        private V v;
+        package HashMapEntry prev, next;
+
+        public def HashMapEntry(K k, V v) {
+            this.k = k;
+            this.v = v;
+        }
+
+        public get key() -> K {
+            return k;
+        }
+
+        public get value() -> V {
+            return v;
+        }
+
+        protected set value(V val) -> V {
+            this.v = val;
+            return val;
+        }
+    }
+
+    class ModifiableHashMapEntry : HashMapEntry {
+
+        public def ModifiableHashMapEntry(K k, V v) {
+            this.k = k;
+            this.v = v;
+        }
+        public set value(V val) {
+            super.value = val;
+        }
+    }
+
+    private ModifiableHashMapEntry[] hashtable;
+    private int count;
+
+    
+    public def clear() -> Map<K,V> {
+        for (int i = 0; i < hashtable.size(); i++) {
+            hashtable[i] = null;
+        }
+        this.count = 0;
+        return this;
+    }
+    public def operator[](K key) -> V {
+        ModifiableHashMapEntry linked_list = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
+        while (linked_list != null) {
+            if (linked_list.key == key) {
+                return linked_list.value;
+            }
+            linked_list = linked_list.next;
+        }
+        return null;
+    }
+    public def operator[](K key, V value) -> V {
+        int index = key.hash() & (this.hashtable.size() - 1);
+        ModifiableHashMapEntry head = this.hashtable[index], linked_list = head;
+        while (linked_list != null) {
+            if (linked_list.key == key) {
+                linked_list.value = value;
+                return value;
+            }
+            linked_list = linked_list.next;
+        }
+        ModifiableHashMapEntry new_node = new ModifiableHashMapEntry(key, value);
+        new_node.next = head;
+        if (head) {
+            head.prev = new_node;
+        }
+        this.hashtable[index] = new_node;
+        return value;
+    }
+    public def contains(K key) -> boolean {
+        ModifiableHashMapEntry linked_list = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
+        while (linked_list != null) {
+            if (linked_list.key == key) {
+                return true;
+            }
+            linked_list = linked_list.next;
+        }
+        return false;
+    }
+    public def begin() -> Iterator<E>;
+    public def end() -> Iterator<E>;
+    public def size() -> int {
+        return count;
+    }
+}

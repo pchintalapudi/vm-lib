@@ -1,7 +1,6 @@
 import core.collections.Collection;
-import core.collections.Sequence;
 
-interface ArrayLike<E> :: Collection<E>, Sequence<E> {
+interface ArrayLike<E> :: Collection<E> {
     public def operator[](int index) -> E;
     public def operator[](int index, E value) -> E;
     public def begin() -> RandomAccessIterator<E>;

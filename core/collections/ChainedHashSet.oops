@@ -1,0 +1,49 @@
+import core.collections.Set;
+import core.collections.LinkedSequence;
+
+class ChainedHashSet<E sub Hashable> :: Set<E> {
+    private LinkedSequence<E>[] hashtable;
+    private int count;
+
+    public def clear() -> Set<E> {
+        for (int i = 0; i < hashtable.size(); i++) {
+            hashtable[i] = null;
+        }
+        count = 0;
+        return this;
+    }
+    public def add(E element) -> Set<E> {
+        int index = element.hash() & (hashtable.size() - 1);
+        LinkedSequence<E> chain = hashtable[index];
+        if (chain) {
+            if (chain.contains(element)) {
+                return this;
+            }
+        } else {
+            hashtable[index] = chain = new LinkedSequence<E>();
+        }
+        chain.pushFront(element);
+        return this;
+    }
+    public def remove(E element) -> Set<E> {
+        int index = element.hash() & (hashtable.size() - 1);
+        LinkedSequence<E> chain = hashtable[index];
+        if (chain) {
+            chain.remove(element);
+        }
+        return this;
+    }
+    public def contains(E element) -> Set<E> {
+        int index = element.hash() & (hashtable.size() - 1);
+        LinkedSequence<E> chain = hashtable[index];
+        if (chain) {
+            return chain.contains(element);
+        }
+        return false;
+    }
+    public def begin() -> Iterator<E>;
+    public def end() -> Iterator<E>;
+    public def size() -> int {
+        return count;
+    }
+}

@@ -1,0 +1,105 @@
+import core.collections.Stack;
+import core.collections.Queue;
+
+class LinkedSequence<E> :: Stack<E>, Queue<E> {
+
+    class Node {
+        package E value;
+        package Node prev, next;
+    }
+
+    private Node start, end;
+    private int length;
+    public def begin() -> BidirectionalIterator<E>;
+    public def end() -> BidirectionalIterator<E>;
+    public def pushBack(E element) -> LinkedSequence<E> {
+        Node new_node = new Node();
+        new_node.value = element;
+        if (length) {
+            new_node.prev = end;
+            end.next = new_node;
+            end = new_node;
+        } else {
+            start = end = new_node;
+        }
+        length++;
+        return this;
+    }
+    public def popFront() -> E {
+        E val = start.value;
+        if (length == 1) {
+            start = end = null;
+        } else {
+            start = start.next;
+            start.prev = null;
+        }
+        length--;
+        return val;
+    }
+    public def front() -> E {
+        return start.value;
+    }
+    public def pushFront(E element) -> LinkedSequence<E> {
+        Node new_node = new Node();
+        new_node.value = element;
+        if (length) {
+            new_node.next = start;
+            start.prev = new_node;
+            start = new_node;
+        } else {
+            start = end = new_node;
+        }
+        length++;
+        return this;
+    }
+    public def popBack() -> E {
+        E val = end.value;
+        if (length == 1) {
+            start = end = null;
+        } else {
+            end = end.prev;
+            end.next = null;
+        }
+        length--;
+        return val;
+    }
+    public def back() -> E {
+        return end.value;
+    }
+    public def size() -> int {
+        return length;
+    }
+    public def clear() -> LinkedSequence<E> {
+        this.length = 0;
+        start = end = null;
+        return this;
+    }
+    public def remove(E element) -> LinkedSequence<E> {
+        Node node = start;
+        while (node) {
+            if (node.value == element) {
+                //Remove node
+                if (length == 1) {
+                    start = end = null;
+                } else {
+                    if (node.prev) {
+                        node.prev.next = node.next;
+                    }
+                    if (node.next) {
+                        node.next.prev = node.prev;
+                    }
+                    if (node == start) {
+                        start = node.next;
+                    }
+                    if (node == end) {
+                        end = node.prev;
+                    }
+                }
+                length--;
+                break;
+            }
+            node = node.next;
+        }
+        return this;
+    }
+}
