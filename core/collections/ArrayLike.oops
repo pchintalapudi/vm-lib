@@ -1,0 +1,15 @@
+import core.collections.Collection;
+import core.collections.Sequence;
+
+interface ArrayLike<E> :: Collection<E>, Sequence<E> {
+    public def operator[](int index) -> E;
+    public def operator[](int index, E value) -> E;
+    public def begin() -> RandomAccessIterator<E>;
+    public def end() -> RandomAccessIterator<E>;
+    public def front() -> E {
+        return this[0];
+    }
+    public def back() -> E {
+        return this[this.size() - 1];
+    }
+}

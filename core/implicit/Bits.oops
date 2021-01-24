@@ -1,0 +1,44 @@
+final class Bits {
+    private def Bits() {}
+
+    public static def intrinsic doubleToBits(double d) -> long;
+    public static def intrinsic floatToBits(float f) -> int;
+    public static def intrinsic bitsToFloat(int i) -> float;
+    public static def intrinsic bitsToDouble(long l) -> double;
+
+    public static def rotateRight(int i, int places) -> int {
+        places &= 0b11111;
+        return i >>> places | i << (32 - places);
+    }
+
+    public static def rotateLeft(int i, int places) -> int {
+        places &= 0b11111;
+        return i << places | i >>> (32 - places);
+    }
+
+    public static def rotateRight(long i, long places) -> long {
+        places &= 0b11111;
+        return i >>> places | i << (64 - places);
+    }
+
+    public static def rotateLeft(long i, long places) -> long {
+        places &= 0b11111;
+        return i << places | i >>> (64 - places);
+    }
+
+    public static def ceilPowerOfTwo(int i) -> int {
+        return (ceilPowerOfTwo((i -> long) & 0xFFFFFFFF) & 0xFFFFFFFF) -> int;
+    }
+
+    public static def ceilPowerOfTwo(long i) -> long {
+        i--;
+        i |= i >>> 32;
+        i |= i >>> 16;
+        i |= i >>> 8;
+        i |= i >>> 4;
+        i |= i >>> 2;
+        i |= i >>> 1;
+        i++;
+        return i;
+    }
+}

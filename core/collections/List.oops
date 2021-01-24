@@ -1,0 +1,20 @@
+import core.collections.ArrayLike;
+import core.collections.Stack;
+import core.collections.RandomAccessIterator;
+
+interface List<E> :: ArrayLike<E>, Stack<E> {
+    public def clear() -> List<E>;
+    public def insert(int index, E element) -> List<E>;
+    public def remove(int index) -> E;
+    public def index(E element) -> int {
+        for (int i = 0; i < this.size(); i++) {
+            if (this[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public def contains(E element) -> boolean {
+        return this.index(element) >= 0;
+    }
+}

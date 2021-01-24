@@ -1,0 +1,7 @@
+import core.collections.Collection;
+
+interface Stack<E> :: Collection<E> {
+    public def pushBack(E element) -> List<E>;
+    public def popBack() -> E;
+    public def back() -> E;
+}

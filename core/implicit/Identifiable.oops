@@ -1,5 +1,0 @@
-interface Identifiable<E> {
-
-    public def operator==(E other) -> boolean;
-    public def operator!=(E other) -> boolean;
-}

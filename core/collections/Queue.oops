@@ -1,0 +1,7 @@
+import core.collections.Collection;
+import core.collections.Sequence;
+
+interface Queue<E> :: Sequence<E>, Collection<E> {
+    public def pushBack(E element) -> Queue<E>;
+    public def popFront() -> E;
+}

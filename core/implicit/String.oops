@@ -20,6 +20,7 @@ class String : Object :: Hashable, Collection<byte> {
         this.backing = new byte[range.size];
         this.hashcode = 0;
         this.hashcode_valid = false;
+        source.copyTo(this.backing, range, new Range(this.backing.size));
     }
 
     public def String(String other) {

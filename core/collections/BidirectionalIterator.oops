@@ -1,7 +1,20 @@
 import core.collections.Iterator;
 
-interface BidirectionalIterator<E, Derived=BidirectionalIterator<E>> :: Iterator<E, Derived> {
+interface BidirectionalIterator<E> :: Iterator<E> {
 
-    public def operator--() -> Derived;
-    public def operator--(long _) -> Derived;
+
+    public def operator++() -> BidirectionalIterator<E>;
+    public def operator++(long _) -> BidirectionalIterator<E>;
+    public def operator--() -> BidirectionalIterator<E>;
+    public def operator--(long _) -> BidirectionalIterator<E>;
+    public def operator==(Iterator<E> other) -> boolean {
+        return other instanceof BidirectionalIterator<E> && this == (other -> BidirectionalIterator<E>);
+    }
+    public def operator!=(Iterator<E> other) -> boolean {
+        return !(this == other);
+    }
+    public def operator==(BidirectionalIterator<E> other) -> boolean;
+    public def operator!=(BidirectionalIterator<E> other) -> boolean {
+        return !(this == other);
+    }
 }

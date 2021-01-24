@@ -1,3 +1,18 @@
+import core.collections.Iterator;
+
 interface Collection<E> {
-    
+    public def begin() -> Iterator<E>;
+    public def end() -> Iterator<E>;
+    public def size() -> int;
+    public def empty() -> boolean {
+        return this.size() == 0;
+    }
+    public def contains(E element) -> boolean {
+        for (Iterator<E> it = this.begin(); it != this.end(); ++it) {
+            if (element == it.value) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

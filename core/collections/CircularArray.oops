@@ -1,0 +1,71 @@
+import core.collections.List;
+import core.collections.Queue;
+import core.collections.Stack;
+import core.implicit.Bits;
+
+class DynamicArray<E> :: List<E>, Queue<E>, Stack<E> {
+    private E[] backing;
+    private int head;
+    private int length;
+
+    public def front() -> E {
+        return this[0];
+    }
+    public def back() -> E {
+        return this[this.length - 1];
+    }
+
+    public def reserve(int size) -> void {
+        if (size <= this.backing.size()) {
+            return;
+        }
+        size = Bits.ceilPowerOfTwo(size);
+        E[] copy = new E[size];
+        int straight = Math.min(backing.size() - head, length);
+        this.backing.copyTo(copy, new Range(head, head + straight), new Range(straight));
+        this.backing.copyTo(copy, new Range(0, length - straight), new Range(straight, length));
+        this.backing = copy;
+    }
+    public def pushBack(E element) -> DynamicArray<E> {
+        this.reserve(this.size + 1);
+        this.length++;
+        this[this.length - 1] = element;
+        return this;
+    }
+    public def popBack() -> E {
+        E element = this[this.length - 1];
+        this[this.length - 1] = null;
+        this.length--;
+        return element;
+    }
+    public def clear() -> List<E> {
+        for (int i = 0; i < this.length; i++) {
+            this[i] = null;
+        }
+        this.length = 0;
+        return this;
+    }
+    public def insert(int index, E element) -> DynamicArray<E> {
+        if (index == this.length) {
+            return this.pushBack(element);
+        }
+        E back = this.back();
+        for (int i = this.length - 1; i --> index;) {
+            this[i+1] = this[i];
+        }
+        this[index] = element;
+        this.pushBack(back);
+    }
+    public def remove(int index) -> E {
+        if (index == length - 1) {
+            return this.popBack();
+        }
+        E element = this[index];
+        for (int i = index; i < length - 1; i++) {
+            this[i] = this[i+1];
+        }
+        this[length - 1] = null;
+        this.length--;
+        return element;
+    }
+}

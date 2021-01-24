@@ -1,0 +1,9 @@
+import core.collections.Iterator;
+
+interface Sequence<E> {
+    public def begin() -> Iterator<E>;
+    public def end() -> Iterator<E>;
+    public def front() -> E {
+        return this.begin().value;
+    }
+}
