@@ -28,4 +28,12 @@ class Range : Object {
     public def size() -> int {
         return (end - start) / step;
     }
+
+    public def max() -> int {
+        return Math.max(start, this[this.size() - 1]);
+    }
+
+    public def min() -> int {
+        return Math.min(start, this[this.size() - 1]);
+    }
 }

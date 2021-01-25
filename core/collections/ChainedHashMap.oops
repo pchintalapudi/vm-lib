@@ -1,6 +1,7 @@
 import core.collections.Map;
 import core.implicit.Hashable;
 import core.implicit.CircularArray;
+import core.collections.iterators.Iterator;
 
 class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
     class HashMapEntry :: Map<K, V>.Pair {
@@ -40,6 +41,10 @@ class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
 
     private ModifiableHashMapEntry[] hashtable;
     private int count;
+    private double load_factor;
+    
+    private void resize(int total) {
+    }
 
     
     public def clear() -> Map<K,V> {

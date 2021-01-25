@@ -1,4 +1,4 @@
-import core.collections.Iterator;
+import core.collections.iterators.Iterator;
 
 interface Collection<E> {
     public def begin() -> Iterator<E>;

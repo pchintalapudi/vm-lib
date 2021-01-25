@@ -1,0 +1,16 @@
+class Optional<E> {
+    E obj;
+    
+    public def operator!() -> boolean {
+        return obj == null;
+    }
+
+    public get value() -> E {
+        return obj;
+    }
+
+    public set value(E val) -> E {
+        obj = val;
+        return val;
+    }
+}

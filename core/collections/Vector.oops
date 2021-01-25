@@ -1,0 +1,54 @@
+import core.collections.List;
+
+class Vector<E> :: List<E> {
+    private E[] backing;
+    private int length;
+    public def reserve(int amount) -> void {
+        if (size <= this.backing.size()) {
+            return;
+        }
+        size = Bits.ceilPowerOfTwo(size);
+        E[] copy = new E[size];
+        backing.copyTo(copy);
+        backing = copy;
+    }
+    public def clear() -> Vector<E> {
+        for (int i = 0; i < length; i++) {
+            backing[i] = null;
+        }
+        length = 0;
+        return this;
+    }
+    public def insert(int index, E element) -> Vector<E> {
+        if (index == length) {
+            return pushBack(element);
+        }
+        E back = this.back();
+        for (int i = length; i --> index + 1;) {
+            backing[i] = backing[i - 1];
+        }
+        backing[index] = element;
+        return pushBack(back);
+    }
+    public def remove(int index) -> E {
+        E element = backing[index];
+        for (int i = index + 1; i < length; i++) {
+            backing[i - 1] = backing[i];
+        }
+        backing[--length] = null;
+        return element;
+    }
+    public def pushBack(E element) -> Vector<E> {
+        this.reserve(length + 1);
+        backing[length++] = element;
+        return this;
+    }
+    public def popBack() -> E {
+        E element = backing[length - 1];
+        backing[--length] = null;
+        return element;
+    }
+    public def size() -> int {
+        return length;
+    }
+}

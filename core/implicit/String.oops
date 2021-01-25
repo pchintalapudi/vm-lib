@@ -3,7 +3,7 @@ import core.implicit.Array;
 import core.implicit.Hashable;
 import core.implicit.Range;
 import core.collections.ArrayLike;
-import core.collections.RandomAccessIterator;
+import core.collections.iterator.RandomAccessIterator;
 
 class String : Object :: Hashable, ArrayLike<byte> {
     private byte[] backing;
@@ -56,7 +56,4 @@ class String : Object :: Hashable, ArrayLike<byte> {
     public def toString() -> String {
         return this;
     }
-
-    public def begin() -> RandomAccessIterator<E>;
-    public def end() -> RandomAccessIterator<E>;
 };

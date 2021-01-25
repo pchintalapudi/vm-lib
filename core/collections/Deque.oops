@@ -1,0 +1,8 @@
+import core.collections.Stack;
+import core.collections.Queue;
+
+interface Deque<E> :: Stack<E>, Queue<E> {
+    public def pushFront(E element) -> Deque<E>;
+    public def pushBack(E element) -> Deque<E>;
+    public def clear() -> Deque<E>;
+}

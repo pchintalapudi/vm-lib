@@ -1,10 +1,16 @@
 import core.collections.Collection;
+import core.collections.iterators.RandomAccessIterator;
+import core.collections.iterators.ArrayLikeIterator;
 
 interface ArrayLike<E> :: Collection<E> {
     public def operator[](int index) -> E;
     public def operator[](int index, E value) -> E;
-    public def begin() -> RandomAccessIterator<E>;
-    public def end() -> RandomAccessIterator<E>;
+    public def begin() -> RandomAccessIterator<E> {
+        return new ArrayLikeIterator<E>(this, 0);
+    }
+    public def end() -> RandomAccessIterator<E> {
+        return new ArrayLikeIterator<E>(this, this.size());
+    }
     public def front() -> E {
         return this[0];
     }

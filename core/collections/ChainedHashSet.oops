@@ -1,5 +1,6 @@
 import core.collections.Set;
 import core.collections.LinkedSequence;
+import core.collections.iterators.Iterator;
 
 class ChainedHashSet<E sub Hashable> :: Set<E> {
     private LinkedSequence<E>[] hashtable;

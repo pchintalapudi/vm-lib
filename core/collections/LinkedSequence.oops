@@ -1,7 +1,7 @@
-import core.collections.Stack;
-import core.collections.Queue;
+import core.collections.Deque;
+import core.collections.iterators.BidirectionalIterator;
 
-class LinkedSequence<E> :: Stack<E>, Queue<E> {
+class LinkedSequence<E> :: Deque<E> {
 
     class Node {
         package E value;

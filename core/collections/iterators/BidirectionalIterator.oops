@@ -1,4 +1,4 @@
-import core.collections.Iterator;
+import core.collections.iterators.Iterator;
 
 interface BidirectionalIterator<E> :: Iterator<E> {
 

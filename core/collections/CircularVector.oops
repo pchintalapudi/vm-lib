@@ -1,9 +1,9 @@
 import core.collections.List;
-import core.collections.Queue;
+import core.collections.Deque;
 import core.collections.Stack;
 import core.implicit.Bits;
 
-class DynamicArray<E> :: List<E>, Queue<E> {
+class CircularVector<E> :: List<E>, Deque<E> {
     private E[] backing;
     private int head;
     private int length;
@@ -27,7 +27,7 @@ class DynamicArray<E> :: List<E>, Queue<E> {
         this.backing = copy;
     }
     public def pushBack(E element) -> DynamicArray<E> {
-        this.reserve(this.size + 1);
+        this.reserve(this.length + 1);
         this.length++;
         this[this.length - 1] = element;
         return this;
@@ -38,7 +38,20 @@ class DynamicArray<E> :: List<E>, Queue<E> {
         this.length--;
         return element;
     }
-    public def clear() -> List<E> {
+    public def pushFront(E element) -> DynamicArray<E> {
+        this.reserve(this.length + 1);
+        this.head = (this.head + this.backing.size() - 1) & (this.backing.size() - 1);
+        this.length++;
+        this[0] = element;
+        return this;
+    }
+    public def popFront() -> E {
+        E element = this[0];
+        this[0] = null;
+        this.head = (this.head + 1) & (this.backing.size() - 1);
+        return element;
+    }
+    public def clear() -> DynamicArray<E> {
         for (int i = 0; i < this.length; i++) {
             this[i] = null;
         }
@@ -67,5 +80,8 @@ class DynamicArray<E> :: List<E>, Queue<E> {
         this[length - 1] = null;
         this.length--;
         return element;
+    }
+    public def size() -> int {
+        return this.length;
     }
 }

@@ -1,6 +1,5 @@
 import core.collections.ArrayLike;
 import core.collections.Stack;
-import core.collections.RandomAccessIterator;
 
 interface List<E> :: ArrayLike<E>, Stack<E> {
     public def clear() -> List<E>;
