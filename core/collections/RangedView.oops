@@ -5,11 +5,24 @@ class RangedView<E> :: ArrayLike<E> {
     private final Range range;
     private final ArrayLike<E> backing;
 
-    public def operator[](int index) -> E {
+    public RangedView(ArrayLike<E> backing, Range range) {
+        if (!backing.checkBounds(range)) {
+            throw new IndexException("Source array out of bounds for given range!");
+        }
+        if (backing instanceof RangedView<E>) {
+            RangedView<E> subview = backing -> RangedView<E>;
+            backing = subview.backing;
+            range = subview.range.compose(range);
+        }
+        this.backing = backing;
+        this.range = range;
+    }
+
+    public operator[](int index) -> E {
         return backing[range[index]];
     }
 
-    public def operator[](int index, E value) -> E {
+    public operator[](int index, E value) -> E {
         return backing[range[index]] = value;
     }
 

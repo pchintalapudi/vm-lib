@@ -3,39 +3,39 @@ import core.collections.iterators.BidirectionalIterator;
 import core.implicit.Comparable;
 
 interface RandomAccessIterator<E> :: BidirectionalIterator<E>, Comparable<RandomAccessIterator<E>> {
-    public def operator+=(long n) -> RandomAccessIterator<E>;
-    public def operator+(long n) -> RandomAccessIterator<E>;
-    public def operator-(RandomAccessIterator<E> other) -> long;
+    public operator+=(long n) -> RandomAccessIterator<E>;
+    public operator+(long n) -> RandomAccessIterator<E>;
+    public operator-(RandomAccessIterator<E> other) -> long;
     public def cmp(RandomAccessIterator<E> other) -> int;
-    public def operator-=(RandomAccessIterator<E> n) -> RandomAccessIterator<E> {
+    public operator-=(RandomAccessIterator<E> n) -> RandomAccessIterator<E> {
         return this += -n;
     }
-    public def operator-(long n) -> RandomAccessIterator<E> {
+    public operator-(long n) -> RandomAccessIterator<E> {
         return this + -n;
     }
 
-    public def operator++() -> RandomAccessIterator<E> {
+    public operator++() -> RandomAccessIterator<E> {
         return this += 1;
     }
-    public def operator++(long _) -> RandomAccessIterator<E> {
+    public operator++(long _) -> RandomAccessIterator<E> {
         return this + 1;
     }
-    public def operator--() -> RandomAccessIterator<E> {
+    public operator--() -> RandomAccessIterator<E> {
         return this -= 1;
     }
-    public def operator--(long _) -> RandomAccessIterator<E> {
+    public operator--(long _) -> RandomAccessIterator<E> {
         return this - 1;
     }
-    public def operator==(Iterator<E> other) -> boolean {
+    public operator==(Iterator<E> other) -> boolean {
         return other instanceof RandomAccessIterator<E> && this == (other -> RandomAccessIterator<E>);
     }
-    public def operator!=(Iterator<E> other) -> boolean {
+    public operator!=(Iterator<E> other) -> boolean {
         return !(this == other);
     }
-    public def operator==(BidirectionalIterator<E> other) -> boolean {
+    public operator==(BidirectionalIterator<E> other) -> boolean {
         return other instanceof RandomAccessIterator<E> && this == (other -> RandomAccessIterator<E>);
     }
-    public def operator!=(BidirectionalIterator<E> other) -> boolean {
+    public operator!=(BidirectionalIterator<E> other) -> boolean {
         return !(this == other);
     }
 }

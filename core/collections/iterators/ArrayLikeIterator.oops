@@ -9,14 +9,14 @@ class ArrayLikeIterator<E> :: RandomAccessIterator<E> {
         this.backing = backing;
         this.index = index;
     }
-    public def operator+=(long n) -> RandomAccessIterator<E> {
+    public operator+=(long n) -> RandomAccessIterator<E> {
         this.index += n;
         return this;
     }
-    public def operator+(long n) -> RandomAccessIterator<E> {
+    public operator+(long n) -> RandomAccessIterator<E> {
         return new ArrayLikeIterator<E>(this.backing, index + n);
     }
-    public def operator-(RandomAccessIterator<E> other) -> long {
+    public operator-(RandomAccessIterator<E> other) -> long {
         ArrayLikeIterator<E> it = other -> ArrayLikeIterator<E>;
         return index - it.index;
     }

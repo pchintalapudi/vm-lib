@@ -1,0 +1,14 @@
+final class Numerics {
+
+    public static signum<N>(N num) {
+        return num < 0 ? -1 : num > 0 ? 1 : 0;
+    }
+
+    public static positiveMedian(int start, int end) {
+        return (start + end) >>> 1;
+    }
+
+    public static positiveMedian(long start, long end) {
+        return (start + end) >>> 1;
+    }
+}

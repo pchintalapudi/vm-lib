@@ -3,10 +3,10 @@ interface Iterator<E> {
 
     public get value() -> E;
 
-    public def operator++() -> Iterator<E>;
-    public def operator++(long _) -> Iterator<E>;
-    public def operator==(Iterator<E> other) -> boolean;
-    public def operator!=(Iterator<E> other) -> boolean {
+    public operator++() -> Iterator<E>;
+    public operator++(long _) -> Iterator<E>;
+    public operator==(Iterator<E> other) -> boolean;
+    public operator!=(Iterator<E> other) -> boolean {
         return !(this == other);
     }
 }

@@ -1,0 +1,27 @@
+import core.collections.RandomAccessIterator;
+import core.collections.ArrayLike;
+
+class IteratedView<E> :: ArrayLike<E> {
+    private final RandomAccessIterator<E> begin, end;
+
+    public def IteratedView<E>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end) {
+        //Little tricks to copy the iterators
+        this.begin = begin + 0;
+        this.end = end + 0;
+    }
+
+    public operator[](int index) -> E {
+        if (index > size()) {
+            throw new IndexException("Index out of bounds!");
+        }
+        return (begin + index).value;
+    }
+
+    public operator[](int index, E value) -> E {
+        return (begin + index).value = value;
+    }
+
+    public def size() -> int {
+        return end - begin;
+    }
+}

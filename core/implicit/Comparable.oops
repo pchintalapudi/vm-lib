@@ -4,27 +4,27 @@ interface Comparable<E> :: Identifiable<E> {
 
     public def cmp(E against) -> int;
 
-    public def operator<(E against) -> boolean {
+    public operator<(E against) -> boolean {
         return cmp(against) < 0;
     }
 
-    public def operator<=(E against) -> boolean {
+    public operator<=(E against) -> boolean {
         return cmp(against) <= 0;
     }
 
-    public def operator==(E against) -> boolean {
+    public operator==(E against) -> boolean {
         return cmp(against) == 0;
     }
 
-    public def operator!=(E against) -> boolean {
+    public operator!=(E against) -> boolean {
         return cmp(against) != 0;
     }
 
-    public def operator>(E against) -> boolean {
+    public operator>(E against) -> boolean {
         return cmp(against) > 0;
     }
 
-    public def operator>=(E against) -> boolean {
+    public operator>=(E against) -> boolean {
         return cmp(against) > 0;
     }
 }

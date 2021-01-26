@@ -3,8 +3,8 @@ import core.collections.iterators.RandomAccessIterator;
 import core.collections.iterators.ArrayLikeIterator;
 
 interface ArrayLike<E> :: Collection<E> {
-    public def operator[](int index) -> E;
-    public def operator[](int index, E value) -> E;
+    public operator[](int index) -> E;
+    public operator[](int index, E value) -> E;
     public def begin() -> RandomAccessIterator<E> {
         return new ArrayLikeIterator<E>(this, 0);
     }
@@ -16,5 +16,25 @@ interface ArrayLike<E> :: Collection<E> {
     }
     public def back() -> E {
         return this[this.size() - 1];
+    }
+    public def checkBounds(Range rng) -> boolean {
+        return rng.min() >= 0 && rng.max() < this.size();
+    }
+    public def copyTo(ArrayLike<? super E> destination) -> void {
+        this.copyTo(destination, new Range(this.size()), new Range(this.size()));
+    }
+    public def copyTo(ArrayLike<? super E> destination, Range sourceIndeces, Range destIndeces) -> void {
+        if (sourceIndeces.size() != destIndeces.size()) {
+            throw new IndexException("Source and destination indices mismatch!");
+        }
+        if (!this.checkBounds(sourceIndeces)) {
+            throw new IndexException("Source array out of bounds for given range!");
+        }
+        if (!destination.checkBounds(destIndeces)) {
+            throw new IndexException("Destination array out of bounds for given range!");
+        }
+        for (int i = 0; i < sourceIndeces.size(); i++) {
+            destination[destIndeces[i]] = this[sourceIndeces[i]];
+        }
     }
 }

@@ -54,7 +54,7 @@ class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
         this.count = 0;
         return this;
     }
-    public def operator[](K key) -> V {
+    public operator[](K key) -> V {
         ModifiableHashMapEntry linked_list = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
         while (linked_list != null) {
             if (linked_list.key == key) {
@@ -64,7 +64,7 @@ class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
         }
         return null;
     }
-    public def operator[](K key, V value) -> V {
+    public operator[](K key, V value) -> V {
         int index = key.hash() & (this.hashtable.size() - 1);
         ModifiableHashMapEntry head = this.hashtable[index], linked_list = head;
         while (linked_list != null) {

@@ -1,7 +1,7 @@
 class Optional<E> {
     E obj;
     
-    public def operator!() -> boolean {
+    public operator!() -> boolean {
         return obj == null;
     }
 

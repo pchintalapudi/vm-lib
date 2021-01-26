@@ -37,15 +37,15 @@ class String : Object :: Hashable, ArrayLike<byte> {
         return backing.copy();
     }
 
-    public def operator[](int index) -> byte {
+    public operator[](int index) -> byte {
         return backing[index];
     }
 
-    public def operator[](Range range) -> String {
+    public operator[](Range range) -> String {
         return new String(this.backing, range);
     }
 
-    public def operator[](int index, byte c) -> void {
+    public operator[](int index, byte c) -> void {
         backing[index] = c;
     }
 

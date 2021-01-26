@@ -2,8 +2,8 @@ import core.collections.Collection;
 
 interface Map<K,V> :: Collection<K> {
     public def clear() -> Map<K,V>;
-    public def operator[](K key) -> V;
-    public def operator[](K key, V value) -> V;
+    public operator[](K key) -> V;
+    public operator[](K key, V value) -> V;
     public def contains(K key) -> boolean;
 
     interface Pair {
