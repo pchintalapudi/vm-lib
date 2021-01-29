@@ -6,13 +6,13 @@ class Range : Object {
     private final int end;
     private final int step;
 
-    public def Range(int end) {
+    public constructor(int end) {
         this.start = 0;
         this.end = end;
         this.step = 1;
     }
 
-    public def Range(int start, int end, int step = 1) {
+    public constructor(int start, int end, int step = 1) {
         if (step == 0) {
             throw new ArgumentException("Step size must be nonzero!");
         }

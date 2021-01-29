@@ -4,7 +4,7 @@ import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
 final class Collections {
-    private def Collections() {}
+    private constructor() {}
 
     public static def lowerBound<E sub Comparable<E>>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end, E against) -> RandomAccessIterator<E> {
         if (begin == end) {

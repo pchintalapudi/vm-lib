@@ -10,21 +10,17 @@ class String : Object :: Hashable, ArrayLike<byte> {
     private int hashcode;
     private boolean hashcode_valid;
 
-    public def String() {
+    public constructor() {
         this.backing = new byte[0];
         this.hashcode = 0;
         this.hashcode_valid = true;
     }
 
-    public def String(byte[] source, Range range) {
+    public constructor(byte[] source, Range range) {
         this.backing = new byte[range.size];
         this.hashcode = 0;
         this.hashcode_valid = false;
         source.copyTo(this.backing, range, new Range(this.backing.size));
-    }
-
-    public def String(String other) {
-        this.backing = other.backing
     }
 
     private def computeHash() -> int;

@@ -5,7 +5,7 @@ import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
 class Array<E> :: ArrayLike<E> {
-    public def intrinsic Array(int size);
+    public intrinsic constructor(int size);
     public operator intrinsic [](int index) -> E;
     public operator intrinsic [](int index, E element) -> E;
     public def intrinsic size() -> int;

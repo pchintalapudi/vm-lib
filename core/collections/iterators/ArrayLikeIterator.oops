@@ -5,7 +5,7 @@ class ArrayLikeIterator<E> :: RandomAccessIterator<E> {
     private ArrayLike<E> backing;
     private int index;
 
-    public def ArrayLikeIterator(ArrayLike<E> backing, int index) {
+    public constructor(ArrayLike<E> backing, int index) {
         this.backing = backing;
         this.index = index;
     }

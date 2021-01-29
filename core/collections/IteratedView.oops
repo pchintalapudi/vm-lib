@@ -2,9 +2,10 @@ import core.collections.RandomAccessIterator;
 import core.collections.ArrayLike;
 
 class IteratedView<E> :: ArrayLike<E> {
-    private final RandomAccessIterator<E> begin, end;
+    private final RandomAccessIterator<E> begin;
+    private final RandomAccessIterator<E> end;
 
-    public def IteratedView<E>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end) {
+    public constructor(RandomAccessIterator<E> begin, RandomAccessIterator<E> end) {
         //Little tricks to copy the iterators
         this.begin = begin + 0;
         this.end = end + 0;

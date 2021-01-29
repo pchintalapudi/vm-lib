@@ -5,10 +5,12 @@ class LinkedSequence<E> :: Deque<E> {
 
     class Node {
         package E value;
-        package Node prev, next;
+        package Node prev;
+        package Node next;
     }
 
-    private Node start, end;
+    private Node start;
+    private Node end;
     private int length;
     public def begin() -> BidirectionalIterator<E>;
     public def end() -> BidirectionalIterator<E>;

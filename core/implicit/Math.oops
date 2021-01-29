@@ -3,7 +3,7 @@ import core.implicit.Number;
 final class Math {
 
     //No instantiation!!!
-    private def Math() {}
+    private constructor() {}
 
     public static final double E = 2.718281828459045e0;
     public static final double PI = 3.141592653589793;

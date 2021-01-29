@@ -1,5 +1,5 @@
 class Optional<E> {
-    E obj;
+    private E obj;
     
     public operator!() -> boolean {
         return obj == null;

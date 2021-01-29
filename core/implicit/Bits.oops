@@ -1,5 +1,5 @@
 final class Bits {
-    private def Bits() {}
+    private constructor() {}
 
     public static def intrinsic doubleToBits(double d) -> long;
     public static def intrinsic floatToBits(float f) -> int;
