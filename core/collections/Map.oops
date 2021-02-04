@@ -1,6 +1,6 @@
 import core.collections.Collection;
 
-interface Map<K,V> :: Collection<K> {
+interface Map<K,V> implements Collection<K> {
     public def clear() -> Map<K,V>;
     public operator[](K key) -> V;
     public operator[](K key, V value) -> V;
@@ -11,7 +11,7 @@ interface Map<K,V> :: Collection<K> {
         public get value() -> V;
     }
 
-    interface ModifiablePair :: Pair {
+    interface ModifiablePair implements Pair {
         public set value(V val) -> V;
     }
 }

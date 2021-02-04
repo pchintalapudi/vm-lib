@@ -4,8 +4,11 @@ import core.implicit.Hashable;
 import core.implicit.Range;
 import core.collections.ArrayLike;
 import core.collections.iterator.RandomAccessIterator;
+import core.collections.ArrayIteratedView;
+import core.collections.Collection;
+import core.collections.Vector;
 
-class String : Object :: Hashable, ArrayLike<byte> {
+class String extends Object implements Hashable, ArrayLike<byte> {
     private byte[] backing;
     private int hashcode;
     private boolean hashcode_valid;
@@ -16,17 +19,31 @@ class String : Object :: Hashable, ArrayLike<byte> {
         this.hashcode_valid = true;
     }
 
-    public constructor(byte[] source, Range range) {
-        this.backing = new byte[range.size];
+    public constructor(Collection<byte> src) {
+        this.backing = new byte[src.size()];
         this.hashcode = 0;
         this.hashcode_valid = false;
-        source.copyTo(this.backing, range, new Range(this.backing.size));
+        src.copyTo(this.backing);
     }
 
-    private def computeHash() -> int;
+    public constructor(Collection<byte> src1, Collection<byte> src2) {
+        this.backing = new byte[src1.size() + src2.size()];
+        this.hashcode = 0;
+        this.hashcode_valid = false;
+        src1.copyTo(this.backing);
+        src2.copyTo(new ArrayIteratedView<byte>(this.backing.begin() + src1.size(), this.backing.end()));
+    }
+
+    private def computeHash() -> int {
+        return 0;
+    }
 
     public def hash() -> int {
-        return this.hashcode_valid ? hashcode : hashcode = computeHash();
+        if (!this.hashcode_valid) {
+            this.hashcode = this.computeHash();
+            this.hashcode_valid = true;
+        }
+        return this.hashcode;
     }
 
     public def getCharArray() -> byte[] {
@@ -51,5 +68,27 @@ class String : Object :: Hashable, ArrayLike<byte> {
 
     public def toString() -> String {
         return this;
+    }
+
+    public operator+(String other) -> String {
+        return new String(this.backing, other.backing);
+    }
+
+    public operator+<T>(T t) -> String {
+        return new String(this.backing, t.toString());
+    }
+
+    public def join<T>(Collection<T> collection, String prefix = "", String suffix = "") -> String {
+        Vector<byte> builder = new Vector<byte>();
+        for (T t : collection) {
+            String s = t.toString();
+            for (byte b : s) {
+                builder.pushBack(b);
+            }
+            for (byte b : this) {
+                builder.pushBack(b);
+            }
+        }
+        return new String(builder);
     }
 };

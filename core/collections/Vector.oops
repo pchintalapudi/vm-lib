@@ -1,6 +1,6 @@
 import core.collections.List;
 
-class Vector<E> :: List<E> {
+class Vector<E> implements List<E> {
     private E[] backing;
     private int length;
     public def reserve(int amount) -> void {
@@ -45,10 +45,16 @@ class Vector<E> :: List<E> {
     }
     public def popBack() -> E {
         E element = backing[length - 1];
-        backing[--length] = null;
+        this.popBackN(1);
         return element;
     }
     public def size() -> int {
         return length;
+    }
+    public def popBackN(int amount) -> void {
+        if (amount > this.length) {
+            throw new IndexException("Popped more elements than available!");
+        }
+        this.length -= amount;
     }
 }

@@ -1,7 +1,7 @@
 import core.collections.Collection;
 import core.implicit.Hashable;
 
-interface Set<E> :: Collection<E> {
+interface Set<E> implements Collection<E> {
     public def clear() -> Set<E>;
     public def add(E element) -> Set<E>;
     public def remove(E element) -> Set<E>;

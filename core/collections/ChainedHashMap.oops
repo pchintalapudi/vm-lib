@@ -3,8 +3,8 @@ import core.implicit.Hashable;
 import core.implicit.CircularArray;
 import core.collections.iterators.Iterator;
 
-class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
-    class HashMapEntry :: Map<K, V>.Pair {
+class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
+    class HashMapEntry implements Map<K, V>.Pair {
         private final K k;
         private V v;
         package HashMapEntry prev, next;
@@ -28,7 +28,7 @@ class ChainedHashMap<K sub Hashable, V> :: Map<K, V> {
         }
     }
 
-    class ModifiableHashMapEntry : HashMapEntry {
+    class ModifiableHashMapEntry extends HashMapEntry {
 
         public constructor(K k, V v) {
             this.k = k;

@@ -2,7 +2,7 @@ import core.collections.iterators.Iterator;
 import core.collections.iterators.BidirectionalIterator;
 import core.implicit.Comparable;
 
-interface RandomAccessIterator<E> :: BidirectionalIterator<E>, Comparable<RandomAccessIterator<E>> {
+interface RandomAccessIterator<E> implements BidirectionalIterator<E>, Comparable<RandomAccessIterator<E>> {
     public operator+=(long n) -> RandomAccessIterator<E>;
     public operator+(long n) -> RandomAccessIterator<E>;
     public operator-(RandomAccessIterator<E> other) -> long;

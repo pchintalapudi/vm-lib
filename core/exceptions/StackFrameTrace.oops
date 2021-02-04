@@ -1,0 +1,17 @@
+import core.implicit.String;
+
+class StackFrameTrace {
+    private final String class_name;
+    private final String method_name;
+    private final int line_number;
+
+    public constructor(String class_name, String method_name, int line_number) {
+        this.class_name = class_name;
+        this.method_name = method_name;
+        this.line_number = line_number;
+    }
+
+    public def toString() -> String {
+        return class_name + "." + method_name + "(" + line_number + ")";
+    }
+}

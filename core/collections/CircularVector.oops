@@ -3,7 +3,7 @@ import core.collections.Deque;
 import core.collections.Stack;
 import core.implicit.Bits;
 
-class CircularVector<E> :: List<E>, Deque<E> {
+class CircularVector<E> implements List<E>, Deque<E> {
     private E[] backing;
     private int head;
     private int length;

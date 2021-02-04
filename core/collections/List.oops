@@ -1,7 +1,7 @@
 import core.collections.ArrayLike;
 import core.collections.Stack;
 
-interface List<E> :: ArrayLike<E>, Stack<E> {
+interface List<E> implements ArrayLike<E>, Stack<E> {
     public def clear() -> List<E>;
     public def insert(int index, E element) -> List<E>;
     public def remove(int index) -> E;

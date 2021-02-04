@@ -1,6 +1,6 @@
 import core.implicit.Identifiable;
 
-interface Comparable<E> :: Identifiable<E> {
+interface Comparable<E> implements Identifiable<E> {
 
     public def cmp(E against) -> int;
 

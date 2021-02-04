@@ -6,7 +6,7 @@ import core.collections.iterators.RandomAccessIterator;
 final class Collections {
     private constructor() {}
 
-    public static def lowerBound<E sub Comparable<E>>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end, E against) -> RandomAccessIterator<E> {
+    public static def lowerBound<E extends Comparable<E>>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end, E against) -> RandomAccessIterator<E> {
         if (begin == end) {
             return end;
         }
@@ -29,11 +29,11 @@ final class Collections {
         return finish;
     }
 
-    public static def lowerBound<E sub Comparable<E>>(ArrayLike<E> to_search, E against) -> long {
+    public static def lowerBound<E extends Comparable<E>>(ArrayLike<E> to_search, E against) -> long {
         return lowerBound(to_search.begin(), to_search.end(), against) - to_search.begin();
     }
 
-    public static def upperBound<E sub Comparable<E>>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end, E against) -> RandomAccessIterator<E> {
+    public static def upperBound<E extends Comparable<E>>(RandomAccessIterator<E> begin, RandomAccessIterator<E> end, E against) -> RandomAccessIterator<E> {
         if (begin == end) {
             return end;
         }
@@ -56,7 +56,7 @@ final class Collections {
         return finish;
     }
 
-    public static def upperBound<E sub Comparable<E>>(ArrayLike<E> to_search, E against) -> long {
+    public static def upperBound<E extends Comparable<E>>(ArrayLike<E> to_search, E against) -> long {
         return upperBound(to_search.begin(), to_search.end(), against) - to_search.begin();
     }
 }

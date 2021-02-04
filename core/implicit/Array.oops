@@ -4,7 +4,7 @@ import core.implicit.Range;
 import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
-class Array<E> :: ArrayLike<E> {
+class Array<E> implements ArrayLike<E> {
     public intrinsic constructor(int size);
     public operator intrinsic [](int index) -> E;
     public operator intrinsic [](int index, E element) -> E;

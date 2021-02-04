@@ -1,6 +1,6 @@
 import core.collections.Collection;
 
-interface Stack<E> :: Collection<E> {
+interface Stack<E> implements Collection<E> {
     public def pushBack(E element) -> Stack<E>;
     public def popBack() -> E;
     public def back() -> E;

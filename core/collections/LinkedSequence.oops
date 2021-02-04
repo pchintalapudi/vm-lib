@@ -1,7 +1,7 @@
 import core.collections.Deque;
 import core.collections.iterators.BidirectionalIterator;
 
-class LinkedSequence<E> :: Deque<E> {
+class LinkedSequence<E> implements Deque<E> {
 
     class Node {
         package E value;

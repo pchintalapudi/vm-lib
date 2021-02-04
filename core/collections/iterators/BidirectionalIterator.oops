@@ -1,6 +1,6 @@
 import core.collections.iterators.Iterator;
 
-interface BidirectionalIterator<E> :: Iterator<E> {
+interface BidirectionalIterator<E> implements Iterator<E> {
 
 
     public operator++() -> BidirectionalIterator<E>;

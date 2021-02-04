@@ -1,7 +1,7 @@
 import core.collections.RandomAccessIterator;
 import core.collections.ArrayLike;
 
-class IteratedView<E> :: ArrayLike<E> {
+class ArrayIteratedView<E> implements ArrayLike<E> {
     private final RandomAccessIterator<E> begin;
     private final RandomAccessIterator<E> end;
 
