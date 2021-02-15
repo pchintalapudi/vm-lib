@@ -3,7 +3,6 @@ import core.implicit.String;
 class Object {
     public def native toString() -> String;
     public def intrinsic operator==(Object other) -> boolean;
-    public def intrinsic operator!=(Object other) -> boolean {
-        return !(this == other);
-    }
+    public def intrinsic operator!=(Object other) -> boolean;
+    public static def intrinsic referenceEquals(Object o1, Object o2) -> boolean;
 }

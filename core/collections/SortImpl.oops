@@ -1,0 +1,60 @@
+import core.collections.ArrayLike;
+import core.collections.iterators.RandomAccessIterator;
+import core.collections.Collections;
+
+final class SortImpl {
+    private constructor() {}
+
+    public static def insertionSort<E>(ArrayLike<E> array) -> void {
+        for (int i = 1; i < array.size(); i++) {
+            RandomAccessIterator<E> end = array.begin() + i;
+            E value = end.value;
+            RandomAccessIterator<E> insert = Collections.upperBound(new ArrayIteratedView<E>(array.begin(), end));
+            while (insert != end) {
+                end[-1] = end[0];
+                --end;
+            }
+            insert.value = value;
+        }
+    }
+
+    private static final int merge_sort_insertion_base_case_size = 32;
+
+    public static def mergeSort<E>(ArrayLike<E> array) -> void {
+        if (array.size() <= merge_sort_insertion_base_case_size) {
+            SortImpl.insertionSort(array);
+        }
+        E[] temp1 = new E[array.size()];
+        E[] temp2 = array;
+        for (long i = 1; i < array.size(); i *= 2) {
+            for (int j = 0; j < array.size() && j >= 0; j += i + i) {
+                int start = j;
+                int midstart = j + i;
+                int end = middle + i;
+                midstart = Math.min(middle, array.size());
+                end = Math.min(end, array.size());
+                int midend = midstart;
+                int dest = start;
+                while (start < midend && midstart < end) {
+                    if (!(temp2[start] < temp2[midstart])) {
+                        temp1[dest++] = temp2[midstart++];
+                    } else {
+                        temp1[dest++] = temp2[start++];
+                    }
+                }
+                while (start < midend) {
+                    temp1[dest++] = temp2[start++];
+                }
+                while (midstart < end) {
+                    temp1[dest++] = temp2[midstart++];
+                }
+            }
+            E[] temp = temp1;
+            temp1 = temp2;
+            temp2 = temp;
+        }
+        if (Objects.referenceEquals(array, temp1)) {
+            temp2.copyTo(array);
+        }
+    }
+}

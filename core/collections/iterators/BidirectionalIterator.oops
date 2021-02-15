@@ -2,18 +2,17 @@ import core.collections.iterators.Iterator;
 
 interface BidirectionalIterator<E> implements Iterator<E> {
 
-
     public operator++() -> BidirectionalIterator<E>;
     public operator++(long _) -> BidirectionalIterator<E>;
     public operator--() -> BidirectionalIterator<E>;
     public operator--(long _) -> BidirectionalIterator<E>;
+    public operator==(BidirectionalIterator<E> other) -> boolean;
     public operator==(Iterator<E> other) -> boolean {
         return other instanceof BidirectionalIterator<E> && this == (other -> BidirectionalIterator<E>);
     }
     public operator!=(Iterator<E> other) -> boolean {
         return !(this == other);
     }
-    public operator==(BidirectionalIterator<E> other) -> boolean;
     public operator!=(BidirectionalIterator<E> other) -> boolean {
         return !(this == other);
     }

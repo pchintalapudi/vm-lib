@@ -9,19 +9,19 @@ final class Math {
     public static final double PI = 3.141592653589793;
 
     public static def abs(double num) -> double {
-        return Number.bitsToDouble(Number.doubleToBits(num) & 0x8FFFFFFFFFFFFFFF);
+        return Number.bitsToDouble(Number.doubleToBits(num) & 0x7FFFFFFFFFFFFFFF);
     }
 
     public static def abs(float num) -> float {
-        return Number.bitsToFloat(Number.floatToBits(num) & 0x8FFFFFFF);
+        return Number.bitsToFloat(Number.floatToBits(num) & 0x7FFFFFFF);
     }
 
     public static def abs(int num) -> int {
-        return num & 0x8FFFFFFF;
+        return num & 0x7FFFFFFF;
     }
 
     public static def abs(long num) -> long {
-        return num & 0x8FFFFFFF;
+        return num & 0x7FFFFFFF;
     }
 
     public static def max<E>(E e1, E e2) -> E {

@@ -17,4 +17,18 @@ class Array<E> implements ArrayLike<E> {
         }
         return copied;
     }
+    public def equals(Array<E> other) -> boolean {
+        if (Object.referenceEquals(this, other)) {
+            return true;
+        }
+        if (this.size() != other.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.size(); i++) {
+            if (this[i] != other[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

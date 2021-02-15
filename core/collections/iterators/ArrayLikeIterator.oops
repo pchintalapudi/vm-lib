@@ -24,4 +24,11 @@ class ArrayLikeIterator<E> implements RandomAccessIterator<E> {
         ArrayLikeIterator<E> it = other -> ArrayLikeIterator<E>;
         return index - it.index;
     }
+    public get value() -> E {
+        return backing[index];
+    }
+    public set value(E value) -> E {
+        backing[index] = value;
+        return value;
+    }
 }

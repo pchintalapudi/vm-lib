@@ -11,6 +11,11 @@ class ArrayIteratedView<E> implements ArrayLike<E> {
         this.end = end + 0;
     }
 
+    public constructor(ArrayLike<E> array) {
+        this.begin = array.begin();
+        this.end = array.end();
+    }
+
     public operator[](int index) -> E {
         if (index > size()) {
             throw new IndexException("Index out of bounds!");

@@ -1,6 +1,7 @@
 import core.collections.Collection;
+import core.collections.iterators.BidirectionalIterator;
 
-interface Map<K,V> implements Collection<K> {
+interface Map<K,V> implements Collection<Map<K, V>.Pair> {
     public def clear() -> Map<K,V>;
     public operator[](K key) -> V;
     public operator[](K key, V value) -> V;
@@ -14,4 +15,7 @@ interface Map<K,V> implements Collection<K> {
     interface ModifiablePair implements Pair {
         public set value(V val) -> V;
     }
+
+    public def begin() -> BidirectionalIterator<Map<K, V>.Pair>;
+    public def end() -> BidirectionalIterator<Map<K, V>.Pair>;
 }

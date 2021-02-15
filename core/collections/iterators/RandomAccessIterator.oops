@@ -38,4 +38,10 @@ interface RandomAccessIterator<E> implements BidirectionalIterator<E>, Comparabl
     public operator!=(BidirectionalIterator<E> other) -> boolean {
         return !(this == other);
     }
+    public operator[](long n) -> E {
+        this += n;
+        E val = this.value;
+        this -= n;
+        return val;
+    }
 }
