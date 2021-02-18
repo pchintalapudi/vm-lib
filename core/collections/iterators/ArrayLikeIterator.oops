@@ -1,3 +1,4 @@
+package core.collections.iterators;
 import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
@@ -17,11 +18,11 @@ class ArrayLikeIterator<E> implements RandomAccessIterator<E> {
         return new ArrayLikeIterator<E>(this.backing, index + n);
     }
     public operator-(RandomAccessIterator<E> other) -> long {
-        ArrayLikeIterator<E> it = other -> ArrayLikeIterator<E>;
+        ArrayLikeIterator<E> it = other as ArrayLikeIterator<E>;
         return index - it.index;
     }
     public def cmp(RandomAccessIterator<E> other) -> int {
-        ArrayLikeIterator<E> it = other -> ArrayLikeIterator<E>;
+        ArrayLikeIterator<E> it = other as ArrayLikeIterator<E>;
         return index - it.index;
     }
     public get value() -> E {

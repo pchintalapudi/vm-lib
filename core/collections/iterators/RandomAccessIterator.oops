@@ -27,13 +27,13 @@ interface RandomAccessIterator<E> implements BidirectionalIterator<E>, Comparabl
         return this - 1;
     }
     public operator==(Iterator<E> other) -> boolean {
-        return other instanceof RandomAccessIterator<E> && this == (other -> RandomAccessIterator<E>);
+        return other instanceof RandomAccessIterator<E> && this == (other as RandomAccessIterator<E>);
     }
     public operator!=(Iterator<E> other) -> boolean {
         return !(this == other);
     }
     public operator==(BidirectionalIterator<E> other) -> boolean {
-        return other instanceof RandomAccessIterator<E> && this == (other -> RandomAccessIterator<E>);
+        return other instanceof RandomAccessIterator<E> && this == (other as RandomAccessIterator<E>);
     }
     public operator!=(BidirectionalIterator<E> other) -> boolean {
         return !(this == other);

@@ -27,7 +27,7 @@ final class Bits {
     }
 
     public static def ceilPowerOfTwo(int i) -> int {
-        return (ceilPowerOfTwo((i -> long) & 0xFFFFFFFF) & 0xFFFFFFFF) -> int;
+        return (ceilPowerOfTwo((i as long) & 0xFFFFFFFF) & 0xFFFFFFFF) as int;
     }
 
     public static def ceilPowerOfTwo(long i) -> long {
