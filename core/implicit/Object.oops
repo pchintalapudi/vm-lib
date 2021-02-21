@@ -1,8 +1,11 @@
 import core.implicit.String;
 
 class Object {
-    public def native toString() -> String;
-    public def intrinsic operator==(Object other) -> boolean;
-    public def intrinsic operator!=(Object other) -> boolean;
-    public static def intrinsic referenceEquals(Object o1, Object o2) -> boolean;
+    public native def toString() -> String;
+    public def operator==(Object other) -> boolean {
+        return other is this;
+    }
+    public def operator!=(Object other) -> boolean {
+        return !(this == other);
+    }
 }

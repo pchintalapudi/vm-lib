@@ -6,9 +6,9 @@ import core.collections.iterators.RandomAccessIterator;
 
 class Array<E> implements ArrayLike<E> {
     public intrinsic constructor(int size);
-    public operator intrinsic [](int index) -> E;
-    public operator intrinsic [](int index, E element) -> E;
-    public def intrinsic size() -> int;
+    public intrinsic operator[](int index) -> E;
+    public intrinsic operator[](int index, E element) -> E;
+    public intrinsic def size() -> int;
     public def toString() -> String;
     public def copied() -> Array<E> {
         E[] copied = new E[this.size];
