@@ -1,3 +1,4 @@
+package core.exceptions;
 import core.implicit.String;
 
 class StackFrameTrace {

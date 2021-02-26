@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.Set;
 import core.collections.LinkedSequence;
 import core.collections.iterators.Iterator;

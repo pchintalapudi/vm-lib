@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.Collection;
 import core.collections.iterators.BidirectionalIterator;
 

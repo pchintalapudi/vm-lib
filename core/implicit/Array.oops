@@ -1,3 +1,5 @@
+package core.implicit;
+
 import core.implicit.Object;
 import core.implicit.String;
 import core.implicit.Range;

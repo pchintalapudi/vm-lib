@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.Map;
 import core.implicit.Hashable;
 import core.implicit.CircularArray;

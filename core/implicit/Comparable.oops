@@ -1,3 +1,4 @@
+package core.implicit;
 import core.implicit.Identifiable;
 
 interface Comparable<E> implements Identifiable<E> {

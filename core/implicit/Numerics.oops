@@ -1,4 +1,5 @@
-final class Numerics {
+package core.implicit;
+class Numerics {
 
     public static def signum<N>(N num) -> N {
         return num < 0 ? -1 : num > 0 ? 1 : 0;

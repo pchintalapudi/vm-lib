@@ -1,3 +1,4 @@
+package core.implicit;
 import core.implicit.String;
 
 class Object {

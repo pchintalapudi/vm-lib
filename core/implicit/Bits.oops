@@ -1,4 +1,6 @@
-final class Bits {
+package core.implicit;
+
+class Bits {
     private constructor() {}
 
     public static def intrinsic doubleToBits(double d) -> long;

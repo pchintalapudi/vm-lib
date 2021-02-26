@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.ArrayLike;
 import core.implicit.Range;
 
@@ -10,7 +11,7 @@ class RangedView<E> implements ArrayLike<E> {
             throw new IndexException("Source array out of bounds for given range!");
         }
         if (backing instanceof RangedView<E>) {
-            RangedView<E> subview = backing -> RangedView<E>;
+            RangedView<E> subview = backing as RangedView<E>;
             backing = subview.backing;
             range = subview.range.compose(range);
         }

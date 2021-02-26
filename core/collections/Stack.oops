@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.Collection;
 
 interface Stack<E> implements Collection<E> {

@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.Collection;
 
 interface Queue<E> implements Collection<E> {

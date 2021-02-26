@@ -1,3 +1,5 @@
+package core.collections.iterators;
+
 interface OutputIterator<E> {
 
     public set value(E val) -> E;

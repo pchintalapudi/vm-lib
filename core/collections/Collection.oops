@@ -1,3 +1,4 @@
+package core.collections;
 import core.collections.iterators.Iterator;
 import core.collections.iterators.RandomAccessIterator;
 import core.collections.ArrayLike;
