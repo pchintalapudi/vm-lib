@@ -6,11 +6,11 @@ import core.collections.Collections;
 final class SortImpl {
     private constructor() {}
 
-    public static def insertionSort<E>(ArrayLike<E> array) -> void {
-        for (int i = 1; i < array.size(); i++) {
-            RandomAccessIterator<E> end = array.begin() + i;
+    public static def insertionSort<E>(array:ArrayLike<E>) -> void {
+        for (var i:int = 1; i < array.size(); i++) {
+            var end:RandomAccessIterator<E> = array.begin() + i;
             E value = end.value;
-            RandomAccessIterator<E> insert = Collections.upperBound(new ArrayIteratedView<E>(array.begin(), end));
+            var insert:RandomAccessIterator<E> = Collections.upperBound(new ArrayIteratedView<E>(array.begin(), end));
             while (insert != end) {
                 end[-1] = end[0];
                 --end;
@@ -19,23 +19,23 @@ final class SortImpl {
         }
     }
 
-    private static final int merge_sort_insertion_base_case_size = 32;
+    private static const merge_sort_insertion_base_case_size:int = 32;
 
-    public static def mergeSort<E>(ArrayLike<E> array) -> void {
+    public static def mergeSort<E>(array:ArrayLike<E>) -> void {
         if (array.size() <= merge_sort_insertion_base_case_size) {
             SortImpl.insertionSort(array);
         }
-        E[] temp1 = new E[array.size()];
-        E[] temp2 = array;
-        for (long i = 1; i < array.size(); i *= 2) {
-            for (int j = 0; j < array.size() && j >= 0; j += i + i) {
-                int start = j;
-                int midstart = j + i;
-                int end = middle + i;
+        var temp1:E[] = new E[array.size()];
+        var temp2:E[] = array;
+        for (var i:long = 1; i < array.size(); i *= 2) {
+            for (var j:long = 0; j < array.size() && j >= 0; j += i + i) {
+                var start:int = j;
+                var midstart:int = j + i;
+                var end:int = middle + i;
                 midstart = Math.min(middle, array.size());
                 end = Math.min(end, array.size());
-                int midend = midstart;
-                int dest = start;
+                var midend:int = midstart;
+                var dest:int = start;
                 while (start < midend && midstart < end) {
                     if (!(temp2[start] < temp2[midstart])) {
                         temp1[dest++] = temp2[midstart++];
@@ -50,7 +50,7 @@ final class SortImpl {
                     temp1[dest++] = temp2[midstart++];
                 }
             }
-            E[] temp = temp1;
+            var temp:E[] = temp1;
             temp1 = temp2;
             temp2 = temp;
         }

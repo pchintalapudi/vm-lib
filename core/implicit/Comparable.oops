@@ -3,29 +3,29 @@ import core.implicit.Identifiable;
 
 interface Comparable<E> implements Identifiable<E> {
 
-    public def cmp(E against) -> int;
+    public def cmp(against:E) -> int;
 
-    public operator<(E against) -> boolean {
+    public operator<(against:E) -> boolean {
         return cmp(against) < 0;
     }
 
-    public operator<=(E against) -> boolean {
+    public operator<=(against:E) -> boolean {
         return cmp(against) <= 0;
     }
 
-    public operator==(E against) -> boolean {
+    public operator==(against:E) -> boolean {
         return cmp(against) == 0;
     }
 
-    public operator!=(E against) -> boolean {
+    public operator!=(against:E) -> boolean {
         return cmp(against) != 0;
     }
 
-    public operator>(E against) -> boolean {
+    public operator>(against:E) -> boolean {
         return cmp(against) > 0;
     }
 
-    public operator>=(E against) -> boolean {
+    public operator>=(against:E) -> boolean {
         return cmp(against) > 0;
     }
 }

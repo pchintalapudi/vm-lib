@@ -5,9 +5,9 @@ import core.collections.Stack;
 import core.implicit.Bits;
 
 class CircularVector<E> implements List<E>, Deque<E> {
-    private E[] backing;
-    private int head;
-    private int length;
+    private var backing:E[];
+    private var head:int;
+    private var length:int;
 
     public def front() -> E {
         return this[0];
@@ -16,18 +16,18 @@ class CircularVector<E> implements List<E>, Deque<E> {
         return this[this.length - 1];
     }
 
-    public def reserve(int size) -> void {
+    public def reserve(size:int) -> void {
         if (size <= this.backing.size()) {
             return;
         }
         size = Bits.ceilPowerOfTwo(size);
-        E[] copy = new E[size];
-        int straight = Math.min(backing.size() - head, length);
+        copy:E[] = new E[size];
+        straight:int = Math.min(backing.size() - head, length);
         this.backing.copyTo(copy, new Range(head, head + straight), new Range(straight));
         this.backing.copyTo(copy, new Range(0, length - straight), new Range(straight, length));
         this.backing = copy;
     }
-    public def pushBack(E element) -> DynamicArray<E> {
+    public def pushBack(element:E) -> DynamicArray<E> {
         this.reserve(this.length + 1);
         this.length++;
         this[this.length - 1] = element;
@@ -39,7 +39,7 @@ class CircularVector<E> implements List<E>, Deque<E> {
         this.length--;
         return element;
     }
-    public def pushFront(E element) -> DynamicArray<E> {
+    public def pushFront(element:E) -> DynamicArray<E> {
         this.reserve(this.length + 1);
         this.head = (this.head + this.backing.size() - 1) & (this.backing.size() - 1);
         this.length++;
@@ -47,35 +47,35 @@ class CircularVector<E> implements List<E>, Deque<E> {
         return this;
     }
     public def popFront() -> E {
-        E element = this[0];
+        var element:E = this[0];
         this[0] = null;
         this.head = (this.head + 1) & (this.backing.size() - 1);
         return element;
     }
     public def clear() -> DynamicArray<E> {
-        for (int i = 0; i < this.length; i++) {
+        for (var i:int = 0; i < this.length; i++) {
             this[i] = null;
         }
         this.length = 0;
         return this;
     }
-    public def insert(int index, E element) -> DynamicArray<E> {
+    public def insert(index:int, element:E) -> DynamicArray<E> {
         if (index == this.length) {
             return this.pushBack(element);
         }
-        E back = this.back();
-        for (int i = this.length - 1; i --> index;) {
+        var back:E = this.back();
+        for (var i:int = this.length - 1; i --> index;) {
             this[i+1] = this[i];
         }
         this[index] = element;
         this.pushBack(back);
     }
-    public def remove(int index) -> E {
+    public def remove(index:int) -> E {
         if (index == length - 1) {
             return this.popBack();
         }
-        E element = this[index];
-        for (int i = index; i < length - 1; i++) {
+        var element:E = this[index];
+        for (var i:int = index; i < length - 1; i++) {
             this[i] = this[i+1];
         }
         this[length - 1] = null;

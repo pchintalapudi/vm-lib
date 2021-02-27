@@ -2,57 +2,57 @@ package core.collections;
 import core.collections.List;
 
 class Vector<E> implements List<E> {
-    private E[] backing;
-    private int length;
-    public def reserve(int amount) -> void {
+    private var backing:E[];
+    private var length:int;
+    public def reserve(amount:int) -> void {
         if (size <= this.backing.size()) {
             return;
         }
         size = Bits.ceilPowerOfTwo(size);
-        E[] copy = new E[size];
+        var copy:E[] = new E[size];
         backing.copyTo(copy);
         backing = copy;
     }
     public def clear() -> Vector<E> {
-        for (int i = 0; i < length; i++) {
+        for (var i:int = 0; i < length; i++) {
             backing[i] = null;
         }
         length = 0;
         return this;
     }
-    public def insert(int index, E element) -> Vector<E> {
+    public def insert(index:int, element:E) -> Vector<E> {
         if (index == length) {
             return pushBack(element);
         }
-        E back = this.back();
-        for (int i = length; i --> index + 1;) {
+        var back:E = this.back();
+        for (var i:int = length; i --> index + 1;) {
             backing[i] = backing[i - 1];
         }
         backing[index] = element;
         return pushBack(back);
     }
-    public def remove(int index) -> E {
-        E element = backing[index];
-        for (int i = index + 1; i < length; i++) {
+    public def remove(index:int) -> E {
+        var element:E = backing[index];
+        for (var i:int = index + 1; i < length; i++) {
             backing[i - 1] = backing[i];
         }
         backing[--length] = null;
         return element;
     }
-    public def pushBack(E element) -> Vector<E> {
+    public def pushBack(element:E) -> Vector<E> {
         this.reserve(length + 1);
         backing[length++] = element;
         return this;
     }
     public def popBack() -> E {
-        E element = backing[length - 1];
+        var element:E = backing[length - 1];
         this.popBackN(1);
         return element;
     }
     public def size() -> int {
         return length;
     }
-    public def popBackN(int amount) -> void {
+    public def popBackN(amount:int) -> void {
         if (amount > this.length) {
             throw new IndexException("Popped more elements than available!");
         }

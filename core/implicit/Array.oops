@@ -7,26 +7,26 @@ import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
 class Array<E> implements ArrayLike<E> {
-    public intrinsic constructor(int size);
-    public intrinsic operator[](int index) -> E;
-    public intrinsic operator[](int index, E element) -> E;
+    public intrinsic constructor(size:int);
+    public intrinsic operator get[](index:int) -> E;
+    public intrinsic operator set[](index:int, element:E) -> E;
     public intrinsic def size() -> int;
     public def toString() -> String;
     public def copied() -> Array<E> {
-        E[] copied = new E[this.size];
-        for (int i = 0; i < this.size(); i++) {
+        var copied:E[] = new E[this.size];
+        for (var i:int = 0; i < this.size(); i++) {
             copied[i] = this[i];
         }
         return copied;
     }
-    public def equals(Array<E> other) -> boolean {
+    public def equals(other:Array<E>) -> boolean {
         if (Object.referenceEquals(this, other)) {
             return true;
         }
         if (this.size() != other.size()) {
             return false;
         }
-        for (int i = 0; i < this.size(); i++) {
+        for (var i:int = 0; i < this.size(); i++) {
             if (this[i] != other[i]) {
                 return false;
             }

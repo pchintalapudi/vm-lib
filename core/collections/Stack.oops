@@ -2,7 +2,7 @@ package core.collections;
 import core.collections.Collection;
 
 interface Stack<E> implements Collection<E> {
-    public def pushBack(E element) -> Stack<E>;
+    public def pushBack(element:E) -> Stack<E>;
     public def popBack() -> E;
     public def back() -> E;
     public def clear() -> Stack<E>;

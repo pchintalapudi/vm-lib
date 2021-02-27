@@ -2,11 +2,11 @@ package core.exceptions;
 import core.implicit.String;
 
 class StackFrameTrace {
-    private final String class_name;
-    private final String method_name;
-    private final int line_number;
+    private const class_name:String;
+    private const method_name:String;
+    private const line_number:int;
 
-    public constructor(String class_name, String method_name, int line_number) {
+    public constructor(class_name:String, method_name:String, line_number:int) {
         this.class_name = class_name;
         this.method_name = method_name;
         this.line_number = line_number;

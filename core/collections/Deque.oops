@@ -3,7 +3,7 @@ import core.collections.Stack;
 import core.collections.Queue;
 
 interface Deque<E> implements Stack<E>, Queue<E> {
-    public def pushFront(E element) -> Deque<E>;
-    public def pushBack(E element) -> Deque<E>;
+    public def pushFront(element:E) -> Deque<E>;
+    public def pushBack(element:E) -> Deque<E>;
     public def clear() -> Deque<E>;
 }

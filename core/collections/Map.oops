@@ -4,9 +4,9 @@ import core.collections.iterators.BidirectionalIterator;
 
 interface Map<K,V> implements Collection<Map<K, V>.Pair> {
     public def clear() -> Map<K,V>;
-    public operator[](K key) -> V;
-    public operator[](K key, V value) -> V;
-    public def contains(K key) -> boolean;
+    public operator[](key:K) -> V;
+    public operator[](key:K, value:V) -> V;
+    public def contains(key:K) -> boolean;
 
     interface Pair {
         public get key() -> K;
@@ -14,7 +14,7 @@ interface Map<K,V> implements Collection<Map<K, V>.Pair> {
     }
 
     interface ModifiablePair implements Pair {
-        public set value(V val) -> V;
+        public set value(val:V) -> V;
     }
 
     public def begin() -> BidirectionalIterator<Map<K, V>.Pair>;

@@ -5,18 +5,18 @@ import core.collections.iterators.BidirectionalIterator;
 class LinkedSequence<E> implements Deque<E> {
 
     class Node {
-        package E value;
-        package Node prev;
-        package Node next;
+        package var value:E;
+        package var prev:Node;
+        package var next:Node;
     }
 
-    private Node start;
-    private Node end;
-    private int length;
+    private var start:Node;
+    private var end:Node;
+    private var length:int;
     public def begin() -> BidirectionalIterator<E>;
     public def end() -> BidirectionalIterator<E>;
-    public def pushBack(E element) -> LinkedSequence<E> {
-        Node new_node = new Node();
+    public def pushBack(element:E) -> LinkedSequence<E> {
+        var new_node:Node = new Node();
         new_node.value = element;
         if (length) {
             new_node.prev = end;
@@ -29,7 +29,7 @@ class LinkedSequence<E> implements Deque<E> {
         return this;
     }
     public def popFront() -> E {
-        E val = start.value;
+        var val:E = start.value;
         if (length == 1) {
             start = end = null;
         } else {
@@ -42,8 +42,8 @@ class LinkedSequence<E> implements Deque<E> {
     public def front() -> E {
         return start.value;
     }
-    public def pushFront(E element) -> LinkedSequence<E> {
-        Node new_node = new Node();
+    public def pushFront(element:E) -> LinkedSequence<E> {
+        var new_node:Node = new Node();
         new_node.value = element;
         if (length) {
             new_node.next = start;
@@ -56,7 +56,7 @@ class LinkedSequence<E> implements Deque<E> {
         return this;
     }
     public def popBack() -> E {
-        E val = end.value;
+        var val:E = end.value;
         if (length == 1) {
             start = end = null;
         } else {
@@ -77,8 +77,8 @@ class LinkedSequence<E> implements Deque<E> {
         start = end = null;
         return this;
     }
-    public def remove(E element) -> LinkedSequence<E> {
-        Node node = start;
+    public def remove(element:E) -> LinkedSequence<E> {
+        var node:Node = start;
         while (node) {
             if (node.value == element) {
                 //Remove node

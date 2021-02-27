@@ -10,9 +10,9 @@ import core.collections.Collection;
 import core.collections.Vector;
 
 class String extends Object implements Hashable, ArrayLike<byte> {
-    private byte[] backing;
-    private int hashcode;
-    private boolean hashcode_valid;
+    private var backing:byte[];
+    private var hashcode:int;
+    private var hashcode_valid:boolean;
 
     public constructor() {
         this.backing = new byte[0];
@@ -20,14 +20,14 @@ class String extends Object implements Hashable, ArrayLike<byte> {
         this.hashcode_valid = true;
     }
 
-    public constructor(Collection<byte> src) {
+    public constructor(src:Collection<byte>) {
         this.backing = new byte[src.size()];
         this.hashcode = 0;
         this.hashcode_valid = false;
         src.copyTo(this.backing);
     }
 
-    public constructor(Collection<byte> src1, Collection<byte> src2) {
+    public constructor(src1:Collection<byte>, src2:Collection<byte>) {
         this.backing = new byte[src1.size() + src2.size()];
         this.hashcode = 0;
         this.hashcode_valid = false;
@@ -51,16 +51,12 @@ class String extends Object implements Hashable, ArrayLike<byte> {
         return backing.copy();
     }
 
-    public operator[](int index) -> byte {
+    public operator get[](index:int) -> byte {
         return backing[index];
     }
 
-    public operator[](Range range) -> String {
+    public operator get[](range:Range) -> String {
         return new String(this.backing, range);
-    }
-
-    public operator[](int index, byte c) -> void {
-        backing[index] = c;
     }
 
     public def size() -> int {
@@ -71,22 +67,22 @@ class String extends Object implements Hashable, ArrayLike<byte> {
         return this;
     }
 
-    public operator+(String other) -> String {
+    public operator+(other:String) -> String {
         return new String(this.backing, other.backing);
     }
 
-    public operator+<T>(T t) -> String {
+    public operator+<T>(t:T) -> String {
         return new String(this.backing, t.toString());
     }
 
-    public def join<T>(Collection<T> collection, String prefix = "", String suffix = "") -> String {
-        Vector<byte> builder = new Vector<byte>();
-        for (T t : collection) {
+    public def join<T>(collection:Collection<T>, prefix:String = "", suffix:String = "") -> String {
+        var builder:Vector<byte> = new Vector<byte>();
+        for (var t:T in collection) {
             String s = t.toString();
-            for (byte b : s) {
+            for (var b:byte in s) {
                 builder.pushBack(b);
             }
-            for (byte b : this) {
+            for (var b:byte in this) {
                 builder.pushBack(b);
             }
         }

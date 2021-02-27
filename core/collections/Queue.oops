@@ -2,7 +2,7 @@ package core.collections;
 import core.collections.Collection;
 
 interface Queue<E> implements Collection<E> {
-    public def pushBack(E element) -> Queue<E>;
+    public def pushBack(element:E) -> Queue<E>;
     public def popFront() -> E;
     public def front() -> E;
     public def clear() -> Queue<E>;

@@ -3,17 +3,17 @@ import core.implicit.Object;
 import core.implicit.Numerics;
 
 class Range extends Object {
-    private final int start;
-    private final int end;
-    private final int step;
+    private const start:int;
+    private const end:int;
+    private const step:int;
 
-    public constructor(int end) {
+    public constructor(end:int) {
         this.start = 0;
         this.end = end;
         this.step = 1;
     }
 
-    public constructor(int start, int end, int step = 1) {
+    public constructor(start:int, end:int, step:int = 1) {
         if (step == 0) {
             throw new ArgumentException("Step size must be nonzero!");
         }
@@ -22,8 +22,8 @@ class Range extends Object {
         this.step = step;
     }
 
-    public operator[](int index) -> int {
-        int shift = step * index;
+    public operator get[](index:int) -> int {
+        var shift:int = step * index;
         if (end >= start && end - start <= shift || end < start && end - start >= shift) {
             throw new IndexException("Index out of bounds for Range object!");
         }
@@ -42,10 +42,10 @@ class Range extends Object {
         return Math.min(start, this[this.size() - 1]);
     }
 
-    public def compose(Range other) -> Range {
-        int step = this.step * other.step;
-        int start = this[other[0]];
-        int end = this[other[other.size() - 1]] + Numerics.signum(step);
+    public def compose(other:Range) -> Range {
+        var step:int = this.step * other.step;
+        var start:int = this[other[0]];
+        var end:int = this[other[other.size() - 1]] + Numerics.signum(step);
         return new Range(start, end, step);
     }
 }

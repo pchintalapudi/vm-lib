@@ -3,36 +3,36 @@ package core.implicit;
 class Bits {
     private constructor() {}
 
-    public static def intrinsic doubleToBits(double d) -> long;
-    public static def intrinsic floatToBits(float f) -> int;
-    public static def intrinsic bitsToFloat(int i) -> float;
-    public static def intrinsic bitsToDouble(long l) -> double;
+    public static def intrinsic doubleToBits(d:double) -> long;
+    public static def intrinsic floatToBits(f:float) -> int;
+    public static def intrinsic bitsToFloat(i:int) -> float;
+    public static def intrinsic bitsToDouble(l:long) -> double;
 
-    public static def rotateRight(int i, int places) -> int {
+    public static def rotateRight(i:int, places:int) -> int {
         places &= 0b11111;
         return i >>> places | i << (32 - places);
     }
 
-    public static def rotateLeft(int i, int places) -> int {
+    public static def rotateLeft(i:int, places:int) -> int {
         places &= 0b11111;
         return i << places | i >>> (32 - places);
     }
 
-    public static def rotateRight(long i, long places) -> long {
+    public static def rotateRight(i:long, places:long) -> long {
         places &= 0b11111;
         return i >>> places | i << (64 - places);
     }
 
-    public static def rotateLeft(long i, long places) -> long {
+    public static def rotateLeft(i:long, places:long) -> long {
         places &= 0b11111;
         return i << places | i >>> (64 - places);
     }
 
-    public static def ceilPowerOfTwo(int i) -> int {
+    public static def ceilPowerOfTwo(i:int) -> int {
         return (ceilPowerOfTwo((i as long) & 0xFFFFFFFF) & 0xFFFFFFFF) as int;
     }
 
-    public static def ceilPowerOfTwo(long i) -> long {
+    public static def ceilPowerOfTwo(i:long) -> long {
         i--;
         i |= i >>> 32;
         i |= i >>> 16;

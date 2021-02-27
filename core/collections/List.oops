@@ -4,17 +4,17 @@ import core.collections.Stack;
 
 interface List<E> implements ArrayLike<E>, Stack<E> {
     public def clear() -> List<E>;
-    public def insert(int index, E element) -> List<E>;
-    public def remove(int index) -> E;
-    public def index(E element) -> int {
-        for (int i = 0; i < this.size(); i++) {
+    public def insert(index:int, element:E) -> List<E>;
+    public def remove(index:int) -> E;
+    public def index(element:E) -> int {
+        for (var i:int = 0; i < this.size(); i++) {
             if (this[i] == element) {
                 return i;
             }
         }
         return -1;
     }
-    public def contains(E element) -> boolean {
+    public def contains(element:E) -> boolean {
         return this.index(element) >= 0;
     }
 }

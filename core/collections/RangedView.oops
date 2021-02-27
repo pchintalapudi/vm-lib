@@ -3,15 +3,15 @@ import core.collections.ArrayLike;
 import core.implicit.Range;
 
 class RangedView<E> implements ArrayLike<E> {
-    private final Range range;
-    private final ArrayLike<E> backing;
+    private const range:Range;
+    private const backing:ArrayLike<E>;
 
-    public constructor(ArrayLike<E> backing, Range range) {
+    public constructor(backing:ArrayLike<E>, range:Range) {
         if (!backing.checkBounds(range)) {
             throw new IndexException("Source array out of bounds for given range!");
         }
         if (backing instanceof RangedView<E>) {
-            RangedView<E> subview = backing as RangedView<E>;
+            var subview:RangedView<E> = backing as RangedView<E>;
             backing = subview.backing;
             range = subview.range.compose(range);
         }
@@ -19,11 +19,11 @@ class RangedView<E> implements ArrayLike<E> {
         this.range = range;
     }
 
-    public operator[](int index) -> E {
+    public operator get[](index:int) -> E {
         return backing[range[index]];
     }
 
-    public operator[](int index, E value) -> E {
+    public operator set[](index:int, value:E) -> E {
         return backing[range[index]] = value;
     }
 

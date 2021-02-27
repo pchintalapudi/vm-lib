@@ -6,30 +6,30 @@ final class Math {
     //No instantiation!!!
     private constructor() {}
 
-    public static final double E = 2.718281828459045e0;
-    public static final double PI = 3.141592653589793;
+    public static const E:double = 2.718281828459045e0;
+    public static const PI:double = 3.141592653589793;
 
-    public static def abs(double num) -> double {
+    public static def abs(num:double) -> double {
         return Number.bitsToDouble(Number.doubleToBits(num) & 0x7FFFFFFFFFFFFFFF);
     }
 
-    public static def abs(float num) -> float {
+    public static def abs(num:float) -> float {
         return Number.bitsToFloat(Number.floatToBits(num) & 0x7FFFFFFF);
     }
 
-    public static def abs(int num) -> int {
+    public static def abs(num:int) -> int {
         return num & 0x7FFFFFFF;
     }
 
-    public static def abs(long num) -> long {
+    public static def abs(num:long) -> long {
         return num & 0x7FFFFFFF;
     }
 
-    public static def max<E>(E e1, E e2) -> E {
+    public static def max<E>(e1:E, e2:E) -> E {
         return e1 > e2 ? e1 : e2;
     }
 
-    public static def min<E>(E e1, E e2) -> E {
+    public static def min<E>(e1:E, e2:E) -> E {
         return e1 > e2 ? e2 : e1;
     }
 }

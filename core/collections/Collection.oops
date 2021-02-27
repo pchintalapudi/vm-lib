@@ -10,8 +10,8 @@ interface Collection<E> {
     public def empty() -> boolean {
         return this.size() == 0;
     }
-    public def contains(E element) -> boolean {
-        for (Iterator<E> it = this.begin(); it != this.end(); ++it) {
+    public def contains(element:E) -> boolean {
+        for (var el:E in this) {
             if (element == it.value) {
                 return true;
             }
@@ -19,22 +19,22 @@ interface Collection<E> {
         return false;
     }
 
-    public static def lowerBound<E extends Comparable<E>>(ArrayLike<E> view, E against) -> RandomAccessIterator<E> {
-        RandomAccessIterator<E> begin = view.begin();
-        RandomAccessIterator<E> end = view.end();
+    public static def lowerBound<E extends Comparable<E>>(view:ArrayLike<E>, against:E) -> RandomAccessIterator<E> {
+        var begin:RandomAccessIterator<E> = view.begin();
+        var begin:RandomAccessIterator<E> = view.end();
         if (begin == end) {
             return end;
         }
         if (begin.value >= against) {
             return begin;
         }
-        RandomAccessIterator<E> finish = end - 1;
+        var finish:RandomAccessIterator<E> = end - 1;
         if (finish.value < against) {
             return end;
         }
-        RandomAccessIterator<E> start = begin;
+        var start:RandomAccessIterator<E> = begin;
         while (finish - start > 1) {
-            RandomAccessIterator<E> middle = Numerics.positiveMedian(start - begin, finish - begin) + begin;
+            var middle:RandomAccessIterator<E> = Numerics.positiveMedian(start - begin, finish - begin) + begin;
             if (middle.value < against) {
                 start = middle;
             } else {
@@ -44,22 +44,22 @@ interface Collection<E> {
         return finish;
     }
 
-    public static def upperBound<E extends Comparable<E>>(ArrayLike<E> view, E against) -> RandomAccessIterator<E> {
-        RandomAccessIterator<E> begin = view.begin();
-        RandomAccessIterator<E> end = view.end();
+    public static def upperBound<E extends Comparable<E>>(view:ArrayLike<E>, against:E) -> RandomAccessIterator<E> {
+        var begin: RandomAccessIterator<E> = view.begin();
+        var end:RandomAccessIterator<E> = view.end();
         if (begin == end) {
             return end;
         }
         if (begin.value > against) {
             return begin;
         }
-        RandomAccessIterator<E> finish = end - 1;
+        var finish:RandomAccessIterator<E> = end - 1;
         if (finish.value <= against) {
             return end;
         }
-        RandomAccessIterator<E> start = begin;
+        var start:RandomAccessIterator<E> = begin;
         while (finish - start > 1) {
-            RandomAccessIterator<E> middle = Numerics.positiveMedian(start - begin, finish - begin) + begin;
+            var middle:RandomAccessIterator<E> = Numerics.positiveMedian(start - begin, finish - begin) + begin;
             if (middle.value <= against) {
                 start = middle;
             } else {

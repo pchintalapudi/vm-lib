@@ -5,9 +5,9 @@ interface Iterator<E> {
     public get value() -> E;
 
     public operator++() -> Iterator<E>;
-    public operator++(long _) -> Iterator<E>;
-    public operator==(Iterator<E> other) -> boolean;
-    public operator!=(Iterator<E> other) -> boolean {
+    public operator++(_:long) -> Iterator<E>;
+    public operator==(other:Iterator<E>) -> boolean;
+    public operator!=(other:Iterator<E>) -> boolean {
         return !(this == other);
     }
 }

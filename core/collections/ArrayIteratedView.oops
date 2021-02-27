@@ -3,28 +3,28 @@ import core.collections.RandomAccessIterator;
 import core.collections.ArrayLike;
 
 class ArrayIteratedView<E> implements ArrayLike<E> {
-    private final RandomAccessIterator<E> begin;
-    private final RandomAccessIterator<E> end;
+    private const begin:RandomAccessIterator<E>;
+    private const end:RandomAccessIterator<E>;
 
-    public constructor(RandomAccessIterator<E> begin, RandomAccessIterator<E> end) {
+    public constructor(begin:RandomAccessIterator<E>, end:RandomAccessIterator<E>) {
         //Little tricks to copy the iterators
         this.begin = begin + 0;
         this.end = end + 0;
     }
 
-    public constructor(ArrayLike<E> array) {
+    public constructor(array:ArrayLike<E>) {
         this.begin = array.begin();
         this.end = array.end();
     }
 
-    public operator[](int index) -> E {
+    public operator[](index:int) -> E {
         if (index > size()) {
             throw new IndexException("Index out of bounds!");
         }
         return (begin + index).value;
     }
 
-    public operator[](int index, E value) -> E {
+    public operator[](index:int, value:E) -> E {
         return (begin + index).value = value;
     }
 

@@ -3,32 +3,32 @@ import core.collections.ArrayLike;
 import core.collections.iterators.RandomAccessIterator;
 
 class ArrayLikeIterator<E> implements RandomAccessIterator<E> {
-    private ArrayLike<E> backing;
-    private int index;
+    private var backing:ArrayLike<E>;
+    private var index:int;
 
-    public constructor(ArrayLike<E> backing, int index) {
+    public constructor(backing: ArrayLike<E>, index:int) {
         this.backing = backing;
         this.index = index;
     }
-    public operator+=(long n) -> RandomAccessIterator<E> {
+    public operator+=(n:long) -> RandomAccessIterator<E> {
         this.index += n;
         return this;
     }
-    public operator+(long n) -> RandomAccessIterator<E> {
+    public operator+(n:long) -> RandomAccessIterator<E> {
         return new ArrayLikeIterator<E>(this.backing, index + n);
     }
-    public operator-(RandomAccessIterator<E> other) -> long {
-        ArrayLikeIterator<E> it = other as ArrayLikeIterator<E>;
+    public operator-(other:RandomAccessIterator<E>) -> long {
+        var it:ArrayLikeIterator<E> = other as ArrayLikeIterator<E>;
         return index - it.index;
     }
-    public def cmp(RandomAccessIterator<E> other) -> int {
-        ArrayLikeIterator<E> it = other as ArrayLikeIterator<E>;
+    public def cmp(other:RandomAccessIterator<E>) -> int {
+        var it:ArrayLikeIterator<E> = other as ArrayLikeIterator<E>;
         return index - it.index;
     }
     public get value() -> E {
         return backing[index];
     }
-    public set value(E value) -> E {
+    public set value(value:E) -> E {
         backing[index] = value;
         return value;
     }

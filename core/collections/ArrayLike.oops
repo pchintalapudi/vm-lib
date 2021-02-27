@@ -4,8 +4,8 @@ import core.collections.iterators.RandomAccessIterator;
 import core.collections.iterators.ArrayLikeIterator;
 
 interface ArrayLike<E> implements Collection<E> {
-    public operator[](int index) -> E;
-    public operator[](int index, E value) -> E;
+    public operator[](index:int) -> E;
+    public operator[](index:int, value:E) -> E;
     public def begin() -> RandomAccessIterator<E> {
         return new ArrayLikeIterator<E>(this, 0);
     }
@@ -18,10 +18,10 @@ interface ArrayLike<E> implements Collection<E> {
     public def back() -> E {
         return this[this.size() - 1];
     }
-    public def checkBounds(Range rng) -> boolean {
+    public def checkBounds(rng:Range) -> boolean {
         return rng.min() >= 0 && rng.max() < this.size();
     }
-    public def copyTo<D super E>(ArrayLike<D> destination) -> void {
+    public def copyTo<D super E>(destination:ArrayLike<D>) -> void {
         if (destination.size() < this.size()) {
             throw new IndexException("Destination array too small!");
         }

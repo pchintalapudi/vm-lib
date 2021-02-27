@@ -1,15 +1,15 @@
 package core.implicit;
 class Numerics {
 
-    public static def signum<N>(N num) -> N {
+    public static def signum<N>(num:N) -> N {
         return num < 0 ? -1 : num > 0 ? 1 : 0;
     }
 
-    public static def positiveMedian(int start, int end) -> int {
+    public static def positiveMedian(start:int, end:int) -> int {
         return (start + end) >>> 1;
     }
 
-    public static def positiveMedian(long start, long end) -> long {
+    public static def positiveMedian(start:long, end:long) -> long {
         return (start + end) >>> 1;
     }
 }

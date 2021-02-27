@@ -4,7 +4,7 @@ import core.implicit.Hashable;
 
 interface Set<E> implements Collection<E> {
     public def clear() -> Set<E>;
-    public def add(E element) -> Set<E>;
-    public def remove(E element) -> Set<E>;
-    public def contains(E element) -> Set<E>;
+    public def add(element:E) -> Set<E>;
+    public def remove(element:E) -> Set<E>;
+    public def contains(element:E) -> Set<E>;
 }

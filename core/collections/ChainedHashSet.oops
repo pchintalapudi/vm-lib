@@ -4,19 +4,19 @@ import core.collections.LinkedSequence;
 import core.collections.iterators.Iterator;
 
 class ChainedHashSet<E extends Hashable> implements Set<E> {
-    private LinkedSequence<E>[] hashtable;
-    private int count;
+    private var hashtable:LinkedSequence<E>[];
+    private var count:int;
 
     public def clear() -> Set<E> {
-        for (int i = 0; i < hashtable.size(); i++) {
+        for (var i:int = 0; i < hashtable.size(); i++) {
             hashtable[i] = null;
         }
         count = 0;
         return this;
     }
-    public def add(E element) -> Set<E> {
+    public def add(element:E) -> Set<E> {
         int index = element.hash() & (hashtable.size() - 1);
-        LinkedSequence<E> chain = hashtable[index];
+        var chain:LinkedSequence<E> = hashtable[index];
         if (chain) {
             if (chain.contains(element)) {
                 return this;
@@ -27,17 +27,17 @@ class ChainedHashSet<E extends Hashable> implements Set<E> {
         chain.pushFront(element);
         return this;
     }
-    public def remove(E element) -> Set<E> {
+    public def remove(element:E) -> Set<E> {
         int index = element.hash() & (hashtable.size() - 1);
-        LinkedSequence<E> chain = hashtable[index];
+        var chain:LinkedSequence<E> = hashtable[index];
         if (chain) {
             chain.remove(element);
         }
         return this;
     }
-    public def contains(E element) -> Set<E> {
-        int index = element.hash() & (hashtable.size() - 1);
-        LinkedSequence<E> chain = hashtable[index];
+    public def contains(element:E) -> Set<E> {
+        var index:int = element.hash() & (hashtable.size() - 1);
+        var chain:LinkedSequence<E> = hashtable[index];
         if (chain) {
             return chain.contains(element);
         }

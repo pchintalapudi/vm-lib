@@ -4,42 +4,42 @@ import core.collections.iterators.BidirectionalIterator;
 import core.implicit.Comparable;
 
 interface RandomAccessIterator<E> implements BidirectionalIterator<E>, Comparable<RandomAccessIterator<E>> {
-    public operator+=(long n) -> RandomAccessIterator<E>;
-    public operator+(long n) -> RandomAccessIterator<E>;
-    public operator-(RandomAccessIterator<E> other) -> long;
-    public def cmp(RandomAccessIterator<E> other) -> int;
-    public operator-=(RandomAccessIterator<E> n) -> RandomAccessIterator<E> {
+    public operator+=(n:long) -> RandomAccessIterator<E>;
+    public operator+(n:long) -> RandomAccessIterator<E>;
+    public operator-(other:RandomAccessIterator<E>) -> long;
+    public def cmp(other:RandomAccessIterator<E>) -> int;
+    public operator-=(n:long) -> RandomAccessIterator<E> {
         return this += -n;
     }
-    public operator-(long n) -> RandomAccessIterator<E> {
+    public operator-(n:long) -> RandomAccessIterator<E> {
         return this + -n;
     }
 
     public operator++() -> RandomAccessIterator<E> {
         return this += 1;
     }
-    public operator++(long _) -> RandomAccessIterator<E> {
+    public operator++(_:long) -> RandomAccessIterator<E> {
         return this + 1;
     }
     public operator--() -> RandomAccessIterator<E> {
         return this -= 1;
     }
-    public operator--(long _) -> RandomAccessIterator<E> {
+    public operator--(_:long) -> RandomAccessIterator<E> {
         return this - 1;
     }
-    public operator==(Iterator<E> other) -> boolean {
+    public operator==(other:Iterator<E>) -> boolean {
         return other instanceof RandomAccessIterator<E> && this == (other as RandomAccessIterator<E>);
     }
-    public operator!=(Iterator<E> other) -> boolean {
+    public operator!=(other:Iterator<E>) -> boolean {
         return !(this == other);
     }
-    public operator==(BidirectionalIterator<E> other) -> boolean {
+    public operator==(other:BidirectionalIterator<E>) -> boolean {
         return other instanceof RandomAccessIterator<E> && this == (other as RandomAccessIterator<E>);
     }
-    public operator!=(BidirectionalIterator<E> other) -> boolean {
+    public operator!=(other:BidirectionalIterator<E>) -> boolean {
         return !(this == other);
     }
-    public operator[](long n) -> E {
+    public operator[](n:long) -> E {
         this += n;
         E val = this.value;
         this -= n;

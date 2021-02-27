@@ -3,10 +3,10 @@ import core.implicit.String;
 
 class Object {
     public native def toString() -> String;
-    public def operator==(Object other) -> boolean {
+    public def operator==(other:Object) -> boolean {
         return other is this;
     }
-    public def operator!=(Object other) -> boolean {
+    public def operator!=(other:Object) -> boolean {
         return !(this == other);
     }
 }

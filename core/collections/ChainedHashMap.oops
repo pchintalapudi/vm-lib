@@ -6,13 +6,13 @@ import core.collections.iterators.Iterator;
 
 class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
     class HashMapEntry implements Map<K, V>.ModifiablePair {
-        private final K k;
-        private V v;
-        package HashMapEntry prev;
-        package HashMapEntry next;
-        package boolean head;
+        private const k:K;
+        private var v:V ;
+        package var prev:HashMapEntry;
+        package var next:HashMapEntry;
+        package var head:boolean;
 
-        public constructor(K k, V v) {
+        public constructor(k:K, v:V) {
             this.k = k;
             this.v = v;
         }
@@ -25,29 +25,28 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
             return v;
         }
 
-        public set value(V val) -> V {
+        public set value(val:V) -> V {
             this.v = val;
             return val;
         }
     }
 
-    private HashMapEntry[] hashtable;
-    private int count;
-    private double load_factor;
+    private var hashtable:HashMapEntry[];
+    private var count:int;
+    private var load_factor:double;
     
-    private def resize(int total) -> void {
-    }
+    private def resize(total:int) -> void;
 
     
     public def clear() -> Map<K,V> {
-        for (int i = 0; i < hashtable.size(); i++) {
+        for (var i:int = 0; i < hashtable.size(); i++) {
             hashtable[i] = null;
         }
         this.count = 0;
         return this;
     }
-    public operator[](K key) -> V {
-        HashMapEntry linked_list = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
+    public operator[](key:K) -> V {
+        var linked_list:HashMapEntry = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
         if (linked_list == null) {
             return null;
         }
@@ -59,9 +58,9 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
         } while (!linked_list.head)
         return null;
     }
-    public operator[](K key, V value) -> V {
-        int index = key.hash() & (this.hashtable.size() - 1);
-        HashMapEntry head = this.hashtable[index], linked_list = head;
+    public operator[](key:K, value:V) -> V {
+        var index:int = key.hash() & (this.hashtable.size() - 1);
+        var head:HashMapEntry = this.hashtable[index], linked_list = head;
         while (linked_list != null) {
             if (linked_list.key == key) {
                 linked_list.value = value;
@@ -69,7 +68,7 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
             }
             linked_list = linked_list.next;
         }
-        HashMapEntry new_node = new HashMapEntry(key, value);
+        var new_node:HashMapEntry = new HashMapEntry(key, value);
         new_node.next = head;
         new_node.head = true;
         if (head) {
@@ -83,8 +82,8 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
         this.hashtable[index] = new_node;
         return value;
     }
-    public def contains(K key) -> boolean {
-        HashMapEntry linked_list = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
+    public def contains(key:K) -> boolean {
+        var linked_list:HashMapEntry = this.hashtable[key.hash() & (this.hashtable.size() - 1)];
         while (linked_list != null) {
             if (linked_list.key == key) {
                 return true;
@@ -94,11 +93,11 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
         return false;
     }
     class HashMapIterator implements BidirectionalIterator<Map<K, V>.Pair> {
-        private final ChainedHashMap<K, V> host;
-        private int index;
-        private HashMapEntry entry;
+        private const host:ChainedHashMap<K, V>;
+        private var index:int;
+        private var entry:HashMapEntry;
 
-        public constructor(ChainedHashMap<K, V> host, int index, HashMapEntry entry) {
+        public constructor(host:ChainedHashMap<K, V>, index:int, entry:HashMapEntry) {
             this.host = host;
             this.index = index;
             this.entry = entry;
@@ -124,7 +123,7 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
             }
             return this;
         }
-        public operator++(long _) -> BidirectionalIterator<E> {
+        public operator++(_:long) -> BidirectionalIterator<E> {
             return ++new HashMapEntry(this.host, this.index, this.entry);
         }
         public operator--() -> BidirectionalIterator<E> {
@@ -142,8 +141,8 @@ class ChainedHashMap<K extends Hashable, V> implements Map<K, V> {
             }
             return this;
         }
-        public operator--(long _) -> BidirectionalIterator<E>;
-        public operator==(BidirectionalIterator<E> other) -> boolean;
+        public operator--(_:long) -> BidirectionalIterator<E>;
+        public operator==(other:BidirectionalIterator<E>) -> boolean;
     }
     public def begin() -> BidirectionalIterator<Map<K, V>.Pair>;
     public def end() -> BidirectionalIterator<Map<K, V>.Pair>;

@@ -1,6 +1,6 @@
 package core.implicit;
 class Optional<E> {
-    private E obj;
+    private var obj:E;
     
     public operator!() -> boolean {
         return obj == null;
@@ -10,7 +10,7 @@ class Optional<E> {
         return obj;
     }
 
-    public set value(E val) -> E {
+    public set value(val:E) -> E {
         obj = val;
         return val;
     }
